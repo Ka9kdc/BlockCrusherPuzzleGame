@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {    
+    "build": "webpack -w",
     "lint": "eslint ./ --ignore-path .gitignore",
     "lint-fix": "npm run lint -- --fix",
     "prettier": "npm run lint-fix && prettier --write ./ --ignore-path .gitignore",
