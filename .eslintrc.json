@@ -1,0 +1,6 @@
+{
+"root": true,
+"rules": {},
+"parser": "babel-eslint",
+"ignorePatterns": ["node_modules"]
+}
