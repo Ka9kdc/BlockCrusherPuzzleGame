@@ -9,8 +9,8 @@ rules: [
 {
 test: /\.js$/,
 exclude: /node_modules/,
-loader: 'babel'loader',
-\},
+loader: 'babel-loader',
+},
 ],
 },
 devtool: 'source-map',
