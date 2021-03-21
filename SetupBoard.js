@@ -1,12 +1,13 @@
 
 const row = 10
-const colums = 30
 
 
 
 
-export default function createGameBoard(rowNum = row, columnNum = colums, styleNum = 4){
+
+export default function createGameBoard(rowNum = row, styleNum = 4){
     let newBoard = []
+    const columnNum = rowNum*5
     while(newBoard.length < rowNum){
         let rowTiles = new Array(columnNum)
         for(let i = 0; i < columnNum; i++){

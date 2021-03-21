@@ -2,5 +2,5 @@
 "root": true,
 "rules": {},
 "parser": "babel-eslint",
-"ignorePatterns": ["node_modules"]
+"ignorePatterns": ["node_modules", "dist"]
 }
