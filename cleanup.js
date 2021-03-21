@@ -2,7 +2,7 @@
 
 export default function cleanUpBoard(board){
     let newBoard = []
-    let boardMatches = true
+    // let boardMatches = true
     for(let i = 0; i < board.length; i++){
         if(!newBoard[i]){
             newBoard[i] = []
@@ -27,25 +27,45 @@ export default function cleanUpBoard(board){
             }
         }
     }
-    for(let k = 0; k < board.length; k++){
+    // for(let k = 0; k < board.length; k++){
 
-        // console.log(newBoard)
-        if(newBoard[k].includes('x')){
-            boardMatches = false
-            while(newBoard[k].indexOf('x') !== -1){ //m*n
-                let currentRow= k
-                let xIdx = newBoard[k].indexOf('x')
-                while(newBoard[currentRow]){ //n
-                    if(!newBoard[currentRow-1]) newBoard[currentRow][xIdx] = 0
-                    else newBoard[currentRow][xIdx] = newBoard[currentRow-1][xIdx]
-                    currentRow--
-                }
+    //     // console.log(newBoard)
+    //     if(newBoard[k].includes('x')){
+    //         boardMatches = false
+    //         while(newBoard[k].indexOf('x') !== -1){ //m*n
+    //             let currentRow= k
+    //             let xIdx = newBoard[k].indexOf('x')
+    //             while(newBoard[currentRow]){ //n
+    //                 if(!newBoard[currentRow-1]) newBoard[currentRow][xIdx] = 0
+    //                 else newBoard[currentRow][xIdx] = newBoard[currentRow-1][xIdx]
+    //                 currentRow--
+    //             }
+    //         }
+    //     }
+    // }
+
+    tilesFall(newBoard, newBoard[0].length)
+ return newBoard
+    // if(boardMatches) {
+    //     // console.log(newBoard)
+       
+    //  } else return cleanUpBoard(newBoard)
+}
+
+
+function tilesFall(board, columLength){
+    for(let i = 0; i < board.length; i++){
+        let pointer = 0
+        while(pointer < board[i].length){
+            if(board[i][pointer] === "x"){
+                board[i].splice(pointer, 1)
+            } else {
+                pointer++
             }
         }
+        while(board[i].length < columLength){
+            board[i].push(0)
+        }
     }
-
-    if(boardMatches) {
-        // console.log(newBoard)
-        return newBoard
-     } else return cleanUpBoard(newBoard)
+    return board
 }

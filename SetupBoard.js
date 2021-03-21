@@ -1,6 +1,6 @@
 
 const row = 10
-const colums = 10
+const colums = 30
 
 
 
@@ -11,7 +11,7 @@ export default function createGameBoard(rowNum = row, columnNum = colums, styleN
         let rowTiles = new Array(columnNum)
         for(let i = 0; i < columnNum; i++){
             let tile = Math.ceil(Math.random()*styleNum)
-            if(i > 1 && rowTiles[i-1] === tile && rowTiles[i-2] === tile){
+            while((i > 1 && rowTiles[i-1] === tile && rowTiles[i-2] === tile) || (newBoard[newBoard.length-2] && newBoard[newBoard.length-1][i] === tile && newBoard[newBoard.length-2][i] === tile)){
                 tile--
                 if(tile === 0) tile = styleNum
             }

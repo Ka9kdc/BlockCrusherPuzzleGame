@@ -1,5 +1,6 @@
 import React, { useReducer, useState } from 'react'
 import cleanUpBoard from './cleanup'
+import { useEffect } from './dist/bundle'
 import createGameBoard from './SetupBoard'
 
 function gameReducer(state = initialboard, action){
@@ -14,6 +15,9 @@ function gameReducer(state = initialboard, action){
             state[action.tile2[0]][action.tile2[1]] = temp
             const nextBoard = cleanUpBoard(state)
             return nextBoard
+        case "Clean UP":
+            const nexBoard = cleanUpBoard(state)
+            return nexBoard
         default:
             return state
     }
@@ -25,6 +29,7 @@ export default function Board(props){
     const [tile1, setTile1] = useState([])
     const [state, dispatch] = useReducer(gameReducer, initialboard)
 
+
     function validateMove(x,y){
         if(tile1.length === 0){
             setTile1([x,y])
@@ -34,7 +39,6 @@ export default function Board(props){
                tile1,
                tile2: [x,y]
            }
-        //    console.log(state[x][y], "valid", action)
            dispatch(action)
            setTile1([])
         } else {
@@ -49,13 +53,25 @@ export default function Board(props){
             return true
         }else  if(state[x][y] === state[tile1[0]][y+1] && state[x][y] === state[tile1[0]][y+2]){
             return true
-        } else  if(state[x+1] && state[x-1] && state[x][y] === state[x-1][tile1[1]] && state[x][y] === state[x+1][tile1[1]]){
+        }else  if(state[x+1] && state[x-1] && state[x][y] === state[x-1][tile1[1]] && state[x][y] === state[x+1][tile1[1]]){
             return true
         }else  if(state[x-1] && state[x-2] && state[x][y] === state[x-1][tile1[1]] && state[x][y] === state[x-2][tile1[1]]){
             return true
         }else  if(state[x+1] && state[x+2] && state[x][y] === state[x+1][tile1[1]] && state[x][y] === state[x+2][tile1[1]]){
             return true
-        } else if(state[tile1[0]][tile1[1]] === state[x][y-1] && state[tile1[0]][tile1[1]] === state[x][y+1]){
+        } 
+
+        else  if(state[x][y] === state[tile1[0]][y-3] && state[x][y] === state[tile1[0]][y-2]){
+            return true
+        }else  if(state[x][y] === state[tile1[0]][y+3] && state[x][y] === state[tile1[0]][y+2]){
+            return true
+        }else  if(state[x-3] && state[x-2] && state[x][y] === state[x-3][tile1[1]] && state[x][y] === state[x-2][tile1[1]]){
+            return true
+        }else  if(state[x+3] && state[x+2] && state[x][y] === state[x+3][tile1[1]] && state[x][y] === state[x+2][tile1[1]]){
+            return true
+        } 
+        
+        else if(state[tile1[0]][tile1[1]] === state[x][y-1] && state[tile1[0]][tile1[1]] === state[x][y+1]){
             return true
         }else if(state[tile1[0]][tile1[1]] === state[x][y-1] && state[tile1[0]][tile1[1]] === state[x][y-2]){
             return true
@@ -68,27 +84,39 @@ export default function Board(props){
         }else  if(state[x+1] && state[x+2] && state[tile1[0]][tile1[1]] === state[x+1][y] && state[tile1[0]][tile1[1]] === state[x+2][y]){
             return true
         }
+
+        else if(state[tile1[0]][tile1[1]] === state[x][y-3] && state[tile1[0]][tile1[1]] === state[x][y-2]){
+            return true
+        }else if(state[tile1[0]][tile1[1]] === state[x][y+3] && state[tile1[0]][tile1[1]] === state[x][y+2]){
+            return true
+        } else  if(state[x-3] && state[x-2] && state[tile1[0]][tile1[1]] === state[x-3][y] && state[tile1[0]][tile1[1]] === state[x-2][y]){
+            return true
+        }else  if(state[x+3] && state[x+2] && state[tile1[0]][tile1[1]] === state[x+3][y] && state[tile1[0]][tile1[1]] === state[x+2][y]){
+            return true
+        }
         return false
 
     }
     
-    const colors = ["white", 'red', 'blue', 'green', 'purple', 'orange']
-
+    const colors = ["white", 'red', 'blue', 'green', 'purple', 'orange', 'pink', 'yellow', 'gray']
+    const hidden = 10
     return (
         <div className="game_board">
-            {state.length && state.map((row, rowIdx) => (
+            {state.length && state.map((row, rowIdx) => {
+                return (
                 <div key={`row-${rowIdx}`} className="row" >
                     Row - {rowIdx}
                     {row.length && row.map((tile, columnIdx) => {
-                     if(rowIdx === tile1[0] && columnIdx=== tile1[1]){
+                        if(columnIdx < hidden) {
+                         if(rowIdx === tile1[0] && columnIdx=== tile1[1]){
                          return  <div className={`${colors[tile]} tile selected `} key={`${rowIdx} ${columnIdx}`}>{tile} </div>
                      }
                     return (
                         <div className={`${colors[tile]} tile`} key={`${rowIdx} ${columnIdx}`} onClick={() => validateMove(rowIdx, columnIdx)}>{tile} </div>
-                    )})}
+                    )}})}
 
                 </div>
-            ))  }
+            )})  }
         </div>
     )
 }
