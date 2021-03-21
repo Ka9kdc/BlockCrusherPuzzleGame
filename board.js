@@ -101,7 +101,7 @@ export default function Board(props){
     const colors = ["white", 'red', 'blue', 'green', 'purple', 'orange', 'pink', 'yellow', 'gray']
     const hidden = 10
     return (
-        <div className="game_board">
+        <div className="tile_board">
             {state.length && state.map((row, rowIdx) => {
                 return (
                 <div key={`row-${rowIdx}`} className="row" >

@@ -55,12 +55,14 @@ export default function cleanUpBoard(board, hidden){
 
 function tilesFall(board, columLength, hidden){
     let boardMatches = true
+    let count = 0
     for(let i = 0; i < board.length; i++){
         let pointer = 0
         while(pointer < hidden){
             if(board[i][pointer] === "x"){
                 boardMatches = false
                 board[i].splice(pointer, 1)
+                count++
             } else {
                 pointer++
             }
@@ -69,5 +71,5 @@ function tilesFall(board, columLength, hidden){
             board[i].push(0)
         }
     }
-    return [board, boardMatches]
+    return [board, boardMatches, count]
 }
