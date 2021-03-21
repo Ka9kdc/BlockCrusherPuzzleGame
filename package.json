@@ -1,33 +1,33 @@
 {
-  "name": "puzzlegame",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "build": "webpack -w",
-    "lint": "eslint ./ --ignore-path .gitignore",
-    "lint-fix": "npm run lint -- --fix",
-    "prettier": "npm run lint-fix && prettier --write ./ --ignore-path .gitignore",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.13.10",
-    "@babel/preset-react": "^7.12.13",
-    "babel-eslint": "^10.1.0",
-    "babel-loader": "^8.2.2",
-    "eslint": "^7.22.0",
-    "eslint-config-fullstack": "^6.0.0",
-    "eslint-config-prettier": "^8.1.0",
-    "eslint-plugin-react": "^7.22.0",
-    "prettier": "^2.2.1",
-    "webpack": "^5.27.0",
-    "webpack-cli": "^4.5.0"
-  }
+	"name": "puzzlegame",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"build": "webpack -w",
+		"lint": "eslint . --ignore-path .gitignore ",
+		"lint-fix": "npm run lint -- --fix",
+		"prettier": "npm run lint-fix && prettier --write . --ignore-path .gitignore",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"react": "^17.0.1",
+		"react-dom": "^17.0.1"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.13.10",
+		"@babel/preset-react": "^7.12.13",
+		"babel-eslint": "^10.1.0",
+		"babel-loader": "^8.2.2",
+		"eslint": "^7.22.0",
+		"eslint-config-fullstack": "^6.0.0",
+		"eslint-config-prettier": "^8.1.0",
+		"eslint-plugin-react": "^7.22.0",
+		"prettier": "^2.2.1",
+		"webpack": "^5.27.0",
+		"webpack-cli": "^4.5.0"
+	}
 }

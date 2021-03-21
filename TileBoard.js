@@ -9,8 +9,8 @@ export default function TitleBoard(props) {
 	const [tile1, setTile1] = useState([]);
 	const [board, setBoard] = useState(initialboard);
 	const [matchs, setMatchs] = useState(true);
-    const [Score, setScore] = useState(0);
-    const [hidden, setHidden] = useState(10)
+	const [Score, setScore] = useState(0);
+	const [hidden, setHidden] = useState(10);
 
 	function IncreaseScore(amount) {
 		const newScore = Score + amount;
@@ -28,9 +28,8 @@ export default function TitleBoard(props) {
 		}
 	}, [matchs, Score]);
 
-
 	function validateMove(x, y) {
-		if (tile1.length === 0 && board[x][y] !== 0 ) {
+		if (tile1.length === 0 && board[x][y] !== 0) {
 			setTile1([x, y]);
 		} else if (
 			(board[x][y] !== 0 || board.length - 1 === x) &&
@@ -194,44 +193,49 @@ export default function TitleBoard(props) {
 		'purple',
 		'orange',
 		'pink',
-        'brown',
+		'brown',
 		'yellow',
 		'gray',
 	];
 
 	return (
-        <div>
-           <ScoreBoard hidden={hidden} setHidden={setHidden} Score={Score} setBoard={setBoard} />
-		<div className="tile_board">
-			{board.length &&
-				board.map((row, rowIdx) => {
-					return (
-						<div key={`row-${rowIdx}`} className="row">
-							{/* Row - {rowIdx} */}
-							{row.length &&
-								row.map((tile, columnIdx) => {
-									if (columnIdx < hidden) {
-										if (rowIdx === tile1[0] && columnIdx === tile1[1]) {
+		<div>
+			<ScoreBoard
+				hidden={hidden}
+				setHidden={setHidden}
+				Score={Score}
+				setBoard={setBoard}
+			/>
+			<div className="tile_board">
+				{board.length &&
+					board.map((row, rowIdx) => {
+						return (
+							<div key={`row-${rowIdx}`} className="row">
+								{/* Row - {rowIdx} */}
+								{row.length &&
+									row.map((tile, columnIdx) => {
+										if (columnIdx < hidden) {
+											if (rowIdx === tile1[0] && columnIdx === tile1[1]) {
+												return (
+													<div
+														className={`${colors[tile]} tile selected `}
+														key={`${rowIdx} ${columnIdx}`}
+													/>
+												);
+											}
 											return (
 												<div
-													className={`${colors[tile]} tile selected `}
+													className={`${colors[tile]} tile`}
 													key={`${rowIdx} ${columnIdx}`}
-												 />
+													onClick={() => validateMove(rowIdx, columnIdx)}
+												/>
 											);
 										}
-										return (
-											<div
-												className={`${colors[tile]} tile`}
-												key={`${rowIdx} ${columnIdx}`}
-												onClick={() => validateMove(rowIdx, columnIdx)}
-											 />
-										);
-									}
-								})}
-						</div>
-					);
-				})}
+									})}
+							</div>
+						);
+					})}
+			</div>
 		</div>
-        </div>
 	);
 }
