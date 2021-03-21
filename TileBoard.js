@@ -28,7 +28,6 @@ export default function TitleBoard(props) {
 		}
 	}, [matchs, Score]);
 
-    
 
 	function validateMove(x, y) {
 		if (tile1.length === 0 && board[x][y] !== 0 ) {
@@ -195,10 +194,11 @@ export default function TitleBoard(props) {
 		'purple',
 		'orange',
 		'pink',
+        'brown',
 		'yellow',
 		'gray',
 	];
-	
+
 	return (
         <div>
            <ScoreBoard hidden={hidden} setHidden={setHidden} Score={Score} setBoard={setBoard} />
@@ -216,8 +216,7 @@ export default function TitleBoard(props) {
 												<div
 													className={`${colors[tile]} tile selected `}
 													key={`${rowIdx} ${columnIdx}`}
-												>
-												</div>
+												 />
 											);
 										}
 										return (
@@ -225,8 +224,7 @@ export default function TitleBoard(props) {
 												className={`${colors[tile]} tile`}
 												key={`${rowIdx} ${columnIdx}`}
 												onClick={() => validateMove(rowIdx, columnIdx)}
-											>
-											</div>
+											 />
 										);
 									}
 								})}

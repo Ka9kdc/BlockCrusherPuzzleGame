@@ -3,27 +3,27 @@
 export default function cleanUpBoard(board, hidden){
     let newBoard = []
     // let boardMatches = true
-    for(let i = 0; i < board.length; i++){
-        if(!newBoard[i]){
+    for (let i = 0; i < board.length; i++){
+        if (!newBoard[i]){
             newBoard[i] = []
-        } 
+        }
         // console.log(newBoard)
-        for(let j = 0; j < board[i].length; j++){
-            if(!newBoard[i][j]){
+        for (let j = 0; j < board[i].length; j++){
+            if (!newBoard[i][j]){
                 newBoard[i][j] = board[i][j]
-            } 
-            if(board[i][j] !== 0 && j < hidden){
-                if(board[i][j-1] === board[i][j] && board[i][j+1]=== board[i][j] && j < hidden-1){
-                    newBoard[i][j-1] = 'x'
+            }
+            if (board[i][j] !== 0 && j < hidden){
+                if (board[i][j - 1] === board[i][j] && board[i][j + 1] === board[i][j] && j < hidden - 1){
+                    newBoard[i][j - 1] = 'x'
                     newBoard[i][j]   = 'x'
-                    newBoard[i][j+1] = 'x'
-                } 
-                if(board[i-1] && board[i+1] && board[i-1][j] === board[i][j] && board[i+1][j]=== board[i][j]){
-                    newBoard[i-1][j] = 'x'
+                    newBoard[i][j + 1] = 'x'
+                }
+                if (board[i - 1] && board[i + 1] && board[i - 1][j] === board[i][j] && board[i + 1][j] === board[i][j]){
+                    newBoard[i - 1][j] = 'x'
                     newBoard[i][j]   = 'x'
-                    if(!newBoard[i+1]) newBoard[i+1] = []
-                    newBoard[i+1][j] = 'x'
-                } 
+                    if (!newBoard[i + 1]) newBoard[i + 1] = []
+                    newBoard[i + 1][j] = 'x'
+                }
             }
         }
     }
@@ -45,7 +45,7 @@ export default function cleanUpBoard(board, hidden){
     // }
 
     return tilesFall(newBoard, newBoard[0].length, hidden)
- 
+
     // if(boardMatches) {
     //     // console.log(newBoard)
     //    return newBoard
@@ -56,10 +56,10 @@ export default function cleanUpBoard(board, hidden){
 function tilesFall(board, columLength, hidden){
     let boardMatches = true
     let count = 0
-    for(let i = 0; i < board.length; i++){
+    for (let i = 0; i < board.length; i++){
         let pointer = 0
-        while(pointer < hidden){
-            if(board[i][pointer] === "x"){
+        while (pointer < hidden){
+            if (board[i][pointer] === 'x'){
                 boardMatches = false
                 board[i].splice(pointer, 1)
                 count++
@@ -67,7 +67,7 @@ function tilesFall(board, columLength, hidden){
                 pointer++
             }
         }
-        while(board[i].length < columLength){
+        while (board[i].length < columLength){
             board[i].push(0)
         }
     }

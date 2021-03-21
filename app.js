@@ -1,5 +1,5 @@
 import React from 'react';
-import ScoreBoard from './Score';
+// import ScoreBoard from './Score';
 // import Board from './board'
 import TitleBoard from './TileBoard'
 

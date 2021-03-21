@@ -1,5 +1,10 @@
 {
+    "extends": "fullstack",
 "root": true,
+"overrides": [{
+    "files": ["*.test.js", "*.spec.js"],
+    "rules": {"no-unused-expressions": "off"}
+}],
 "rules": {},
 "parser": "babel-eslint",
 "ignorePatterns": ["node_modules", "dist"]
