@@ -1,6 +1,6 @@
 
 
-export default function cleanUpBoard(board){
+export default function cleanUpBoard(board, hidden){
     let newBoard = []
     // let boardMatches = true
     for(let i = 0; i < board.length; i++){
@@ -8,12 +8,12 @@ export default function cleanUpBoard(board){
             newBoard[i] = []
         } 
         // console.log(newBoard)
-        for(let j = 0; j < board[0].length; j++){
+        for(let j = 0; j < board[i].length; j++){
             if(!newBoard[i][j]){
                 newBoard[i][j] = board[i][j]
             } 
-            if(board[i][j] !== 0){
-                if(board[i][j-1] === board[i][j] && board[i][j+1]=== board[i][j]){
+            if(board[i][j] !== 0 && j < hidden){
+                if(board[i][j-1] === board[i][j] && board[i][j+1]=== board[i][j] && j < hidden-1){
                     newBoard[i][j-1] = 'x'
                     newBoard[i][j]   = 'x'
                     newBoard[i][j+1] = 'x'
@@ -44,20 +44,22 @@ export default function cleanUpBoard(board){
     //     }
     // }
 
-    tilesFall(newBoard, newBoard[0].length)
- return newBoard
+    return tilesFall(newBoard, newBoard[0].length, hidden)
+ 
     // if(boardMatches) {
     //     // console.log(newBoard)
-       
+    //    return newBoard
     //  } else return cleanUpBoard(newBoard)
 }
 
 
-function tilesFall(board, columLength){
+function tilesFall(board, columLength, hidden){
+    let boardMatches = true
     for(let i = 0; i < board.length; i++){
         let pointer = 0
-        while(pointer < board[i].length){
+        while(pointer < hidden){
             if(board[i][pointer] === "x"){
+                boardMatches = false
                 board[i].splice(pointer, 1)
             } else {
                 pointer++
@@ -67,5 +69,5 @@ function tilesFall(board, columLength){
             board[i].push(0)
         }
     }
-    return board
+    return [board, boardMatches]
 }
