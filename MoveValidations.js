@@ -227,3 +227,27 @@ export function moveCheck(board, tile1, x, y, hidden) {
 
 	return valid;
 }
+
+// eslint-disable-next-line complexity
+export function checkBoardForMoves(board, hidden) {
+	let amountLeft = 0;
+	let zerosSeen = 0;
+	for (let i = 0; i < hidden; i++) {
+		for (let j = 0; j < board.length; j++) {
+			if (board[j][i] === 0) {
+				zerosSeen++;
+			} else {
+				if (
+					(j + 1 < board && moveCheck(board, [j, i], j + 1, i, hidden)) ||
+					(i + 1 < hidden && moveCheck(board, [j, i], j, i + 1, hidden))
+				) {
+					return [true, amountLeft];
+				}
+				zerosSeen = 0;
+				amountLeft++;
+			}
+			if (zerosSeen === board.length) return [false, amountLeft];
+		}
+		return [false, amountLeft];
+	}
+}

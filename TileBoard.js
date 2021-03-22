@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useState, useEffect } from 'react';
 import cleanUpBoard, { tilesFall } from './cleanup';
-import { checkMove, moveCheck } from './MoveValidations';
+import { checkBoardForMoves, moveCheck } from './MoveValidations';
 import reorderTiles from './reOrderTIles';
 import ScoreBoard from './Score';
 import createGameBoard from './SetupBoard';
@@ -78,51 +78,15 @@ export default function TitleBoard() {
 	}
 
 	function endGame() {
-		const tilesLeft = {};
-		let amountLeft = 0;
-		let zerosSeen = 0;
-		for (let i = 0; i < hidden; i++) {
-			for (let j = 0; j < board.length; j++) {
-				if (board[j][i] === 0) {
-					zerosSeen++;
-				} else {
-					zerosSeen = 0;
-					amountLeft++;
-					if (tilesLeft[board[j][i]]) {
-						tilesLeft[board[j][i]]++;
-					} else {
-						tilesLeft[board[j][i]] = 1;
-					}
-				}
-			}
-			if (zerosSeen === board.length) break;
+		const [movesPossible, amountLeft] = checkBoardForMoves(board, hidden);
+		let message = 'playing';
+		if (amountLeft < hidden && !movesPossible) {
+			message = 'winner';
 		}
-		let message = winningAlert(amountLeft, tilesLeft);
+		if (randomizeCount === 0 && !movesPossible) {
+			message = 'lost';
+		}
 		setGameState(message);
-	}
-
-	function winningAlert(amountLeft, tilesLeft) {
-		if (amountLeft < 4) {
-			return 'Winner';
-		} else {
-			let movesPossible = false;
-			let count = 0;
-			for (let tileType in tilesLeft) {
-				if (tilesLeft[tileType] > 2) {
-					count++;
-					movesPossible = true;
-					break;
-				} else {
-					count++;
-				}
-			}
-			if (count < colorNum && !movesPossible) {
-				return 'Winner';
-			} else if (randomizeCount === 0 && !movesPossible) {
-				return 'lost';
-			}
-		}
-		return 'playing';
 	}
 
 	const colors = [
