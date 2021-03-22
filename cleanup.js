@@ -69,3 +69,5 @@ export default function cleanUpBoard(board, hidden) {
 
 	return tilesFall(newBoard, newBoard[0].length, hidden, "x");
 }
+
+

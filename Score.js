@@ -3,10 +3,12 @@ import createGameBoard from './SetupBoard';
 
 export default function ScoreBoard(props) {
 	const [rowNum, setRowNum] = useState(10);
-	const [colorNum, setColorNum] = useState(4);
+	
+	
+	
 
 	function newGame() {
-		const newBoard = createGameBoard(rowNum, colorNum);
+		const newBoard = createGameBoard(rowNum, props.colorNum);
 		props.setBoard(newBoard);
 		props.setScore(0)
 	}
@@ -33,13 +35,13 @@ export default function ScoreBoard(props) {
 			/>
 			<input
 				type="number"
-				value={colorNum}
+				value={props.colorNum}
 				name="colorNUm"
-				onChange={(evt) => setColorNum(evt.target.value)}
+				onChange={(evt) => props.setColorNum(evt.target.value)}
 				min="3"
 				max="8"
 			/>
-			<button type="button" onClick={props.randomize}>Randomize</button>
+			<button type="button" onClick={props.randomize} disabled={props.randomizeCount === 0}>Randomize {props.randomizeCount}</button>
 		</div>
 	);
 }

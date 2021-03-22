@@ -13,6 +13,8 @@ export default function TitleBoard() {
 	const [matchs, setMatchs] = useState(true);
 	const [Score, setScore] = useState(0);
 	const [hidden, setHidden] = useState(10);
+	const [colorNum, setColorNum] = useState(4);
+	const [randomizeCount, setRandomCount] = useState(colorNum)
 
 	function IncreaseScore(amount) {
 		const newScore = Score + amount;
@@ -27,6 +29,9 @@ export default function TitleBoard() {
 				setMatchs(newMatchs);
 				IncreaseScore(count);
 			}, 400);
+			if (board[0][hidden] === 0){
+				endGame()
+			}
 		}
 	}, [matchs, Score]);
 
@@ -52,13 +57,68 @@ export default function TitleBoard() {
 	}
 
 	function randomize(){
+		if (randomizeCount > 0){
+			const newCount = randomizeCount-1
+		setRandomCount(newCount)
 		const newBoard = reorderTiles(board, hidden)
 		setBoard(newBoard)
-		const [nextBoard, newMatchs, count] = tilesFall(board, board[0].length, hidden, 0)
+		setTimeout(() => {
+			const [nextBoard, newMatchs, count] = tilesFall(board, board[0].length, hidden, 0)
 		setBoard(nextBoard);
 		setTile1([]);
 		setMatchs(newMatchs);
 		IncreaseScore(count);
+		}, 400)
+		}
+		
+	}
+
+	function endGame(){
+		const tilesLeft = {}
+		let amountLeft = 0
+		let zerosSeen = 0
+		for (let i = 0; i < hidden; i++){
+			for (let j = 0; j < board.length; j++){
+				if (board[j][i] === 0) {zerosSeen++}
+				else {
+					zerosSeen = 0
+					amountLeft++
+					if (tilesLeft[board[j][i]]){
+						tilesLeft[board[j][i]]++
+					} else {
+						tilesLeft[board[j][i]] = 1
+					}
+				}
+
+
+			}
+			if (zerosSeen === board.length) break
+		}
+		winningAlert(amountLeft, tilesLeft)
+		}
+
+	function winningAlert(amountLeft, tilesLeft){
+		if (amountLeft < 4) {alert('Winner')}
+		else {
+				let movesPossible = false
+				let count = 0
+				for (let tileType in tilesLeft){
+					if (tilesLeft[tileType] > 2) {
+						count++
+						movesPossible = true
+						break
+					} else {
+						count++
+					}
+				}
+				if (count < colorNum && !movesPossible) {
+					alert('Winner')
+				} else if (!movesPossible){
+					alert("game over")
+				} else if(randomizeCount === 0){
+					alert("lost")
+				}
+			}
 	}
 
 	const colors = [
@@ -83,6 +143,9 @@ export default function TitleBoard() {
 				Score={Score}
 				setBoard={setBoard}
 				randomize={randomize}
+				randomizeCount={randomizeCount}
+				colorNum={colorNum}
+				setColorNum={setColorNum}
 			/>
 			<div className="tile_board">
 				{board.length &&
