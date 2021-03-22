@@ -28,13 +28,13 @@ newBoard[i + 1][j] = 'x';
 }
 
 
-function tilesFall(board, columLength, hidden) {
+export function tilesFall(board, columLength, hidden, char) {
 let boardMatches = true;
 let count = 0;
 for (let i = 0; i < board.length; i++) {
 let pointer = 0;
 while (pointer < hidden) {
-	if (board[i][pointer] === 'x') {
+	if (board[i][pointer] === char) {
 		boardMatches = false;
 		board[i].splice(pointer, 1);
 		count++;
@@ -67,5 +67,5 @@ export default function cleanUpBoard(board, hidden) {
 		}
 	}
 
-	return tilesFall(newBoard, newBoard[0].length, hidden);
+	return tilesFall(newBoard, newBoard[0].length, hidden, "x");
 }

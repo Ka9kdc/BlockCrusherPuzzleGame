@@ -1,7 +1,8 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useState, useEffect } from 'react';
-import cleanUpBoard from './cleanup';
+import cleanUpBoard, { tilesFall } from './cleanup';
 import { checkMove } from './MoveValidations';
+import reorderTiles from './reOrderTIles';
 import ScoreBoard from './Score';
 import createGameBoard from './SetupBoard';
 
@@ -50,6 +51,16 @@ export default function TitleBoard() {
 		}
 	}
 
+	function randomize(){
+		const newBoard = reorderTiles(board, hidden)
+		setBoard(newBoard)
+		const [nextBoard, newMatchs, count] = tilesFall(board, board[0].length, hidden, 0)
+		setBoard(nextBoard);
+		setTile1([]);
+		setMatchs(newMatchs);
+		IncreaseScore(count);
+	}
+
 	const colors = [
 		'white',
 		'red',
@@ -68,8 +79,10 @@ export default function TitleBoard() {
 			<ScoreBoard
 				hidden={hidden}
 				setHidden={setHidden}
+				setScore={setScore}
 				Score={Score}
 				setBoard={setBoard}
+				randomize={randomize}
 			/>
 			<div className="tile_board">
 				{board.length &&

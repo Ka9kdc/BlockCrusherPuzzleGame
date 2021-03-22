@@ -8,6 +8,7 @@ export default function ScoreBoard(props) {
 	function newGame() {
 		const newBoard = createGameBoard(rowNum, colorNum);
 		props.setBoard(newBoard);
+		props.setScore(0)
 	}
 
 	return (
@@ -38,6 +39,7 @@ export default function ScoreBoard(props) {
 				min="3"
 				max="8"
 			/>
+			<button type="button" onClick={props.randomize}>Randomize</button>
 		</div>
 	);
 }
