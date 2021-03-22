@@ -79,8 +79,15 @@ export default function TitleBoard() {
 
 	function endGame() {
 		const [movesPossible, amountLeft] = checkBoardForMoves(board, hidden);
+		let noHiddenTiles = true
+		for (let i = 0; i < board.length; i++){
+			if (board[i][hidden] !== 0){
+				noHiddenTiles = false
+			}
+		}
+		console.log(movesPossible, amountLeft, randomizeCount)
 		let message = 'playing';
-		if (amountLeft < hidden && !movesPossible) {
+		if (amountLeft < hidden && !movesPossible && noHiddenTiles) {
 			message = 'winner';
 		}
 		if (randomizeCount === 0 && !movesPossible) {
@@ -115,6 +122,7 @@ export default function TitleBoard() {
 				colorNum={colorNum}
 				setColorNum={setColorNum}
 			/>
+			{gameState !== 'playing' && <h1>{gameState}</h1>}
 			<div className="tile_board">
 				{board.length &&
 					board.map((row, rowIdx) => {

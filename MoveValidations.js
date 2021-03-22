@@ -241,12 +241,13 @@ export function checkBoardForMoves(board, hidden) {
 					(j + 1 < board && moveCheck(board, [j, i], j + 1, i, hidden)) ||
 					(i + 1 < hidden && moveCheck(board, [j, i], j, i + 1, hidden))
 				) {
+					console.log(board[i][j], i, j)
 					return [true, amountLeft];
 				}
 				zerosSeen = 0;
 				amountLeft++;
 			}
-			if (zerosSeen === board.length) return [false, amountLeft];
+			if (zerosSeen === (board.length*2)) return [false, amountLeft];
 		}
 		return [false, amountLeft];
 	}
