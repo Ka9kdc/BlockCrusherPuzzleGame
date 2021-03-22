@@ -8,11 +8,12 @@ export default function ScoreBoard(props) {
 		const newBoard = createGameBoard(rowNum, props.colorNum);
 		props.setBoard(newBoard);
 		props.setScore(0);
+		props.setRandomCount(props.colorNum)
 	}
 
 	return (
 		<div>
-			<h1>Score: {props.Score}</h1>
+			<h1>Score: {props.Score} ---- Max Score: {props.maxScore}</h1>
 			<input
 				type="number"
 				value={props.hidden}

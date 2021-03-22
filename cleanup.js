@@ -1,3 +1,5 @@
+import { checkBoardForMoves } from './MoveValidations';
+
 const checkRow = (newBoard, board, i, j, hidden) => {
 	if (
 		board[i][j - 1] === board[i][j] &&
@@ -64,4 +66,37 @@ export default function cleanUpBoard(board, hidden) {
 	}
 
 	return tilesFall(newBoard, newBoard[0].length, hidden, 'x');
+}
+
+// eslint-disable-next-line complexity
+export function endGame(board, hidden, randomizeCount, Score, ScoreMax) {
+	const movesPossible = checkBoardForMoves(board, hidden);
+	let noHiddenTiles = true;
+	let emtpyRow = false
+	for (let i = 0; i < board.length; i++) {
+		if (board[i][hidden] !== 0) {
+			noHiddenTiles = false;
+		}
+		if (board[i][0] === 0){
+			emtpyRow = true
+		}
+	}
+	let message = 'playing';
+	if (emtpyRow && noHiddenTiles) {
+			let newBoard = []
+			for (let j = 0; j < board.length; j++){
+				if (board[j][0] !== 0){
+					newBoard.push(board[j])
+				}
+			}
+			return [message, newBoard]
+	} else if (!movesPossible) {
+if (noHiddenTiles && Score > ScoreMax) {
+			message = 'winner';
+	} else if(randomizeCount === 0){
+		message = 'lost';
+	}
+	}
+ 
+	return [message];
 }

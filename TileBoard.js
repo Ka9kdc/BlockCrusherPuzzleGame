@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useState, useEffect } from 'react';
-import cleanUpBoard, { tilesFall } from './cleanup';
-import { checkBoardForMoves, moveCheck } from './MoveValidations';
+import cleanUpBoard, { endGame, tilesFall } from './cleanup';
+import { moveCheck } from './MoveValidations';
 import reorderTiles from './reOrderTIles';
 import ScoreBoard from './Score';
 import createGameBoard from './SetupBoard';
@@ -15,6 +15,7 @@ export default function TitleBoard() {
 	const [colorNum, setColorNum] = useState(4);
 	const [randomizeCount, setRandomCount] = useState(colorNum);
 	const [gameState, setGameState] = useState('playing');
+	const [scoreMax, setScoreMax] = useState(hidden * (hidden * 5) )
 
 	function IncreaseScore(amount) {
 		const newScore = Score + amount;
@@ -28,10 +29,16 @@ export default function TitleBoard() {
 				setBoard(nextBoard);
 				setMatchs(newMatchs);
 				IncreaseScore(count);
+				if (nextBoard[0][hidden] === 0 && gameState === 'playing') {
+					const [message, minimizedBoard] = endGame(nextBoard, hidden, randomizeCount, Score+count, scoreMax );
+					setGameState(message)
+					if (minimizedBoard){
+						setBoard(minimizedBoard)
+						setMatchs(newMatchs);
+						IncreaseScore(0);
+					}
+				}
 			}, 400);
-			if (board[0][hidden] === 0 && gameState === 'playing') {
-				endGame();
-			}
 		}
 	}, [matchs, Score]);
 
@@ -77,24 +84,7 @@ export default function TitleBoard() {
 		}
 	}
 
-	function endGame() {
-		const [movesPossible, amountLeft] = checkBoardForMoves(board, hidden);
-		let noHiddenTiles = true
-		for (let i = 0; i < board.length; i++){
-			if (board[i][hidden] !== 0){
-				noHiddenTiles = false
-			}
-		}
-		console.log(movesPossible, amountLeft, randomizeCount)
-		let message = 'playing';
-		if (amountLeft < hidden && !movesPossible && noHiddenTiles) {
-			message = 'winner';
-		}
-		if (randomizeCount === 0 && !movesPossible) {
-			message = 'lost';
-		}
-		setGameState(message);
-	}
+
 
 	const colors = [
 		'white',
@@ -121,6 +111,8 @@ export default function TitleBoard() {
 				randomizeCount={randomizeCount}
 				colorNum={colorNum}
 				setColorNum={setColorNum}
+				setRandomCount={setRandomCount}
+				maxScore={scoreMax}
 			/>
 			{gameState !== 'playing' && <h1>{gameState}</h1>}
 			<div className="tile_board">
