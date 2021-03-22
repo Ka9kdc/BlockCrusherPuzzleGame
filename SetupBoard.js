@@ -10,25 +10,25 @@ const checkTiles = (i, rowTiles, newBoard, styleNum, tile) => {
 		tile--;
 		if (tile === 0) tile = styleNum;
 	}
-	return tile
-}
+	return tile;
+};
 
 const makeRow = (columnNum, newBoard, styleNum) => {
 	let rowTiles = new Array(columnNum);
-		for (let i = 0; i < columnNum; i++) {
-			let tile = Math.ceil(Math.random() * styleNum);
-			 if ((rowTiles[i - 2]) || newBoard[newBoard.length - 2]){
-				tile = checkTiles(i, rowTiles, newBoard, styleNum, tile)
-			}
-			rowTiles[i] = tile;
+	for (let i = 0; i < columnNum; i++) {
+		let tile = Math.ceil(Math.random() * styleNum);
+		if (rowTiles[i - 2] || newBoard[newBoard.length - 2]) {
+			tile = checkTiles(i, rowTiles, newBoard, styleNum, tile);
 		}
-		return rowTiles
-}
+		rowTiles[i] = tile;
+	}
+	return rowTiles;
+};
 
 export default function createGameBoard(rowNum = row, styleNum = 4) {
 	let newBoard = [];
 	while (newBoard.length < rowNum) {
-		const rowTiles = makeRow(rowNum * 5, newBoard, styleNum)
+		const rowTiles = makeRow(rowNum * 5, newBoard, styleNum);
 		newBoard.push(rowTiles);
 	}
 	return newBoard;

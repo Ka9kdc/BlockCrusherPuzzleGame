@@ -1,6 +1,4 @@
-
 const checkRow = (newBoard, board, i, j, hidden) => {
-
 	if (
 		board[i][j - 1] === board[i][j] &&
 		board[i][j + 1] === board[i][j] &&
@@ -10,43 +8,41 @@ const checkRow = (newBoard, board, i, j, hidden) => {
 		newBoard[i][j] = 'x';
 		newBoard[i][j + 1] = 'x';
 	}
-
-}
+};
 
 const checkColumn = (newBoard, board, i, j) => {
-if (
-board[i - 1] &&
-board[i + 1] &&
-board[i - 1][j] === board[i][j] &&
-board[i + 1][j] === board[i][j]
-) {
-newBoard[i - 1][j] = 'x';
-newBoard[i][j] = 'x';
-if (!newBoard[i + 1]) newBoard[i + 1] = [];
-newBoard[i + 1][j] = 'x';
-}
-}
-
+	if (
+		board[i - 1] &&
+		board[i + 1] &&
+		board[i - 1][j] === board[i][j] &&
+		board[i + 1][j] === board[i][j]
+	) {
+		newBoard[i - 1][j] = 'x';
+		newBoard[i][j] = 'x';
+		if (!newBoard[i + 1]) newBoard[i + 1] = [];
+		newBoard[i + 1][j] = 'x';
+	}
+};
 
 export function tilesFall(board, columLength, hidden, char) {
-let boardMatches = true;
-let count = 0;
-for (let i = 0; i < board.length; i++) {
-let pointer = 0;
-while (pointer < hidden) {
-	if (board[i][pointer] === char) {
-		boardMatches = false;
-		board[i].splice(pointer, 1);
-		count++;
-	} else {
-		pointer++;
+	let boardMatches = true;
+	let count = 0;
+	for (let i = 0; i < board.length; i++) {
+		let pointer = 0;
+		while (pointer < hidden) {
+			if (board[i][pointer] === char) {
+				boardMatches = false;
+				board[i].splice(pointer, 1);
+				count++;
+			} else {
+				pointer++;
+			}
+		}
+		while (board[i].length < columLength) {
+			board[i].push(0);
+		}
 	}
-}
-while (board[i].length < columLength) {
-	board[i].push(0);
-}
-}
-return [board, boardMatches, count];
+	return [board, boardMatches, count];
 }
 
 export default function cleanUpBoard(board, hidden) {
@@ -61,13 +57,11 @@ export default function cleanUpBoard(board, hidden) {
 				newBoard[i][j] = board[i][j];
 			}
 			if (board[i][j] !== 0 && j < hidden) {
-				checkRow(newBoard, board, i, j, hidden)
-				checkColumn(newBoard, board, i, j)
+				checkRow(newBoard, board, i, j, hidden);
+				checkColumn(newBoard, board, i, j);
 			}
 		}
 	}
 
-	return tilesFall(newBoard, newBoard[0].length, hidden, "x");
+	return tilesFall(newBoard, newBoard[0].length, hidden, 'x');
 }
-
-

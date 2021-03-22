@@ -6,7 +6,6 @@ import reorderTiles from './reOrderTIles';
 import ScoreBoard from './Score';
 import createGameBoard from './SetupBoard';
 
-
 export default function TitleBoard() {
 	const [tile1, setTile1] = useState([]);
 	const [board, setBoard] = useState(createGameBoard());
@@ -14,8 +13,8 @@ export default function TitleBoard() {
 	const [Score, setScore] = useState(0);
 	const [hidden, setHidden] = useState(10);
 	const [colorNum, setColorNum] = useState(4);
-	const [randomizeCount, setRandomCount] = useState(colorNum)
-	const [gameState, setGameState] = useState("playing")
+	const [randomizeCount, setRandomCount] = useState(colorNum);
+	const [gameState, setGameState] = useState('playing');
 
 	function IncreaseScore(amount) {
 		const newScore = Score + amount;
@@ -30,8 +29,8 @@ export default function TitleBoard() {
 				setMatchs(newMatchs);
 				IncreaseScore(count);
 			}, 400);
-			if (board[0][hidden] === 0 && gameState === "playing"){
-				endGame()
+			if (board[0][hidden] === 0 && gameState === 'playing') {
+				endGame();
 			}
 		}
 	}, [matchs, Score]);
@@ -41,7 +40,7 @@ export default function TitleBoard() {
 			setTile1([x, y]);
 		} else if (
 			board[x][y] !== 0 &&
-			(Math.abs(x - tile1[0]) +  Math.abs(y - tile1[1]) === 1) &&
+			Math.abs(x - tile1[0]) + Math.abs(y - tile1[1]) === 1 &&
 			checkMove(x, y, tile1, board)
 		) {
 			const temp = board[tile1[0]][tile1[1]];
@@ -57,69 +56,73 @@ export default function TitleBoard() {
 		}
 	}
 
-	function randomize(){
-		if (randomizeCount > 0){
-			const newCount = randomizeCount-1
-		setRandomCount(newCount)
-		const newBoard = reorderTiles(board, hidden)
-		setBoard(newBoard)
-		setTimeout(() => {
-			const [nextBoard, newMatchs, count] = tilesFall(board, board[0].length, hidden, 0)
-		setBoard(nextBoard);
-		setTile1([]);
-		setMatchs(newMatchs);
-		IncreaseScore(count);
-		}, 400)
+	function randomize() {
+		if (randomizeCount > 0) {
+			const newCount = randomizeCount - 1;
+			setRandomCount(newCount);
+			const newBoard = reorderTiles(board, hidden);
+			setBoard(newBoard);
+			setTimeout(() => {
+				const [nextBoard, newMatchs, count] = tilesFall(
+					board,
+					board[0].length,
+					hidden,
+					0
+				);
+				setBoard(nextBoard);
+				setTile1([]);
+				setMatchs(newMatchs);
+				IncreaseScore(count);
+			}, 400);
 		}
-		
 	}
 
-	function endGame(){
-		const tilesLeft = {}
-		let amountLeft = 0
-		let zerosSeen = 0
-		for (let i = 0; i < hidden; i++){
-			for (let j = 0; j < board.length; j++){
-				if (board[j][i] === 0) {zerosSeen++}
-				else {
-					zerosSeen = 0
-					amountLeft++
-					if (tilesLeft[board[j][i]]){
-						tilesLeft[board[j][i]]++
+	function endGame() {
+		const tilesLeft = {};
+		let amountLeft = 0;
+		let zerosSeen = 0;
+		for (let i = 0; i < hidden; i++) {
+			for (let j = 0; j < board.length; j++) {
+				if (board[j][i] === 0) {
+					zerosSeen++;
+				} else {
+					zerosSeen = 0;
+					amountLeft++;
+					if (tilesLeft[board[j][i]]) {
+						tilesLeft[board[j][i]]++;
 					} else {
-						tilesLeft[board[j][i]] = 1
+						tilesLeft[board[j][i]] = 1;
 					}
 				}
-
-
 			}
-			if (zerosSeen === board.length) break
+			if (zerosSeen === board.length) break;
 		}
-		let message = winningAlert(amountLeft, tilesLeft)
-		setGameState(message)
-		}
+		let message = winningAlert(amountLeft, tilesLeft);
+		setGameState(message);
+	}
 
-	function winningAlert(amountLeft, tilesLeft){
-		if (amountLeft < 4) return 'Winner'
-		else {
-				let movesPossible = false
-				let count = 0
-				for (let tileType in tilesLeft){
-					if (tilesLeft[tileType] > 2) {
-						count++
-						movesPossible = true
-						break
-					} else {
-						count++
-					}
-				}
-				if (count < colorNum && !movesPossible) {
-					return 'Winner'
-				} else if (randomizeCount === 0 && !movesPossible){
-					return "lost"
+	function winningAlert(amountLeft, tilesLeft) {
+		if (amountLeft < 4) {
+			return 'Winner';
+		} else {
+			let movesPossible = false;
+			let count = 0;
+			for (let tileType in tilesLeft) {
+				if (tilesLeft[tileType] > 2) {
+					count++;
+					movesPossible = true;
+					break;
+				} else {
+					count++;
 				}
 			}
-			return "playing"
+			if (count < colorNum && !movesPossible) {
+				return 'Winner';
+			} else if (randomizeCount === 0 && !movesPossible) {
+				return 'lost';
+			}
+		}
+		return 'playing';
 	}
 
 	const colors = [
