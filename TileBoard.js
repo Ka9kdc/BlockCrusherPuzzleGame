@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useState, useEffect } from 'react';
 import cleanUpBoard, { tilesFall } from './cleanup';
-import { checkMove } from './MoveValidations';
+import { checkMove, moveCheck } from './MoveValidations';
 import reorderTiles from './reOrderTIles';
 import ScoreBoard from './Score';
 import createGameBoard from './SetupBoard';
@@ -41,7 +41,7 @@ export default function TitleBoard() {
 		} else if (
 			board[x][y] !== 0 &&
 			Math.abs(x - tile1[0]) + Math.abs(y - tile1[1]) === 1 &&
-			checkMove(x, y, tile1, board)
+			moveCheck(board, tile1, x, y, hidden)
 		) {
 			const temp = board[tile1[0]][tile1[1]];
 			board[tile1[0]][tile1[1]] = board[x][y];
