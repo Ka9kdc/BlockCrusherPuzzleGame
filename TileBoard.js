@@ -15,6 +15,7 @@ export default function TitleBoard() {
 	const [hidden, setHidden] = useState(10);
 	const [colorNum, setColorNum] = useState(4);
 	const [randomizeCount, setRandomCount] = useState(colorNum)
+	const [gameState, setGameState] = useState("playing")
 
 	function IncreaseScore(amount) {
 		const newScore = Score + amount;
@@ -29,7 +30,7 @@ export default function TitleBoard() {
 				setMatchs(newMatchs);
 				IncreaseScore(count);
 			}, 400);
-			if (board[0][hidden] === 0){
+			if (board[0][hidden] === 0 && gameState === "playing"){
 				endGame()
 			}
 		}
@@ -94,11 +95,12 @@ export default function TitleBoard() {
 			}
 			if (zerosSeen === board.length) break
 		}
-		winningAlert(amountLeft, tilesLeft)
+		let message = winningAlert(amountLeft, tilesLeft)
+		setGameState(message)
 		}
 
 	function winningAlert(amountLeft, tilesLeft){
-		if (amountLeft < 4) {alert('Winner')}
+		if (amountLeft < 4) return 'Winner'
 		else {
 				let movesPossible = false
 				let count = 0
@@ -112,13 +114,12 @@ export default function TitleBoard() {
 					}
 				}
 				if (count < colorNum && !movesPossible) {
-					alert('Winner')
-				} else if (!movesPossible){
-					alert("game over")
-				} else if(randomizeCount === 0){
-					alert("lost")
+					return 'Winner'
+				} else if (randomizeCount === 0 && !movesPossible){
+					return "lost"
 				}
 			}
+			return "playing"
 	}
 
 	const colors = [
