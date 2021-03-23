@@ -8,7 +8,7 @@ import createGameBoard from './SetupBoard';
 
 const initialBoard = createGameBoard();
 
-export default function TitleBoard() {
+export default function TileBoard() {
 	const [tile1, setTile1] = useState([]);
 	const [board, setBoard] = useState(initialBoard);
 	const [matchs, setMatchs] = useState(true);
@@ -161,7 +161,7 @@ export default function TitleBoard() {
 														key={`${rowIdx} ${columnIdx}`}
 														onClick={() => setTile1([])}
 													>
-														{tile} {colors[tile]} {typeof tile}
+														{/* {tile} {colors[tile]} {typeof tile} */}
 													</div>
 												);
 											}
@@ -171,7 +171,7 @@ export default function TitleBoard() {
 													key={`${rowIdx} ${columnIdx}`}
 													onClick={() => validateMove(rowIdx, columnIdx)}
 												>
-													{tile} {colors[tile]} {typeof tile}
+													{/* {tile} {colors[tile]} {typeof tile} */}
 												</div>
 											);
 										}
