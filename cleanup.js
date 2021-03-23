@@ -92,9 +92,9 @@ export function endGame(board, hidden, randomizeCount, Score, ScoreMax) {
 		}
 		return [message, newBoard];
 	}
-	if(amountRemaining <= board.length * 2 && !movesPossible){
-		if (Score > ScoreMax) message = 'winner'
-		else message = "lost"
+	if (amountRemaining <= board.length * 2 && !movesPossible) {
+		if (Score > ScoreMax) message = 'winner';
+		else message = 'lost';
 	} else if (!movesPossible) {
 		if (noHiddenTiles && Score > ScoreMax) {
 			message = 'winner';

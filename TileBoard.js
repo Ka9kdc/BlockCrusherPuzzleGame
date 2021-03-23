@@ -43,7 +43,10 @@ export default function TitleBoard() {
 				IncreaseScore(count);
 			}, 400);
 		}
-		if ( gameState === 'playing' && (board[0][hidden] === 0 || randomizeCount < Math.ceil(colorNum/2))) {
+		if (
+			gameState === 'playing' &&
+			(board[0][hidden] === 0 || randomizeCount < Math.ceil(colorNum / 2))
+		) {
 			const [message, minimizedBoard] = endGame(
 				board,
 				hidden,
@@ -55,9 +58,9 @@ export default function TitleBoard() {
 				setBoard(minimizedBoard);
 				setMatchs(false);
 			}
-			if (message === 'winner'){
-				const addToScore = randomizeCount * 50
-				IncreaseScore(addToScore)
+			if (message === 'winner') {
+				const addToScore = randomizeCount * 50;
+				IncreaseScore(addToScore);
 			}
 			setGameState(message);
 		}
@@ -97,19 +100,19 @@ export default function TitleBoard() {
 					hidden,
 					0
 				);
-				newBoard = nextBoard
+				newBoard = nextBoard;
 				setBoard(nextBoard);
 				setTile1([]);
 				setMatchs(newMatchs);
-				console.log(count)
+				console.log(count);
 			}, 400);
 			setTimeout(() => {
 				const [nextBoard, newMatchs, count] = cleanUpBoard(newBoard, hidden);
-			setBoard(nextBoard);
-			setTile1([]);
-			setMatchs(newMatchs);
-			IncreaseScore(count);
-		}, 400)
+				setBoard(nextBoard);
+				setTile1([]);
+				setMatchs(newMatchs);
+				IncreaseScore(count);
+			}, 400);
 		}
 	}
 
