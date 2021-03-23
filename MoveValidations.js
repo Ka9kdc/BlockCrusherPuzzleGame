@@ -58,6 +58,7 @@ export function moveCheck(board, tile1, x, y, hidden) {
 // eslint-disable-next-line complexity
 export function checkBoardForMoves(board, hidden) {
 	let zerosSeen = 0;
+	let amountRemaining = 0
 	for (let i = 0; i < hidden; i++) {
 		for (let j = 0; j < board.length; j++) {
 			if (board[j][i] === 0) {
@@ -67,14 +68,14 @@ export function checkBoardForMoves(board, hidden) {
 					(j + 1 < board && moveCheck(board, [j, i], j + 1, i, hidden)) ||
 					(i + 1 < hidden && moveCheck(board, [j, i], j, i + 1, hidden))
 				) {
-					console.log("valid move", board[i][j], i, j, "hidden", hidden, "moveCheck")
-					return true;
+					return [true, amountRemaining];
 				}
+				amountRemaining++
 				zerosSeen = 0;
 			}}
-			if (zerosSeen >= (board.length)) return false;
+			if (zerosSeen >= (board.length)) return [false, amountRemaining];
 		}
-		return false;
+		return [false, amountRemaining];
 }
 
 

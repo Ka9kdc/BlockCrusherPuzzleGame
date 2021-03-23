@@ -6,39 +6,56 @@ import reorderTiles from './reOrderTIles';
 import ScoreBoard from './Score';
 import createGameBoard from './SetupBoard';
 
+const initialBoard = createGameBoard()
+
 export default function TitleBoard() {
 	const [tile1, setTile1] = useState([]);
-	const [board, setBoard] = useState(createGameBoard());
+	const [board, setBoard] = useState(initialBoard);
 	const [matchs, setMatchs] = useState(true);
 	const [Score, setScore] = useState(0);
 	const [hidden, setHidden] = useState(10);
 	const [colorNum, setColorNum] = useState(4);
 	const [randomizeCount, setRandomCount] = useState(colorNum);
 	const [gameState, setGameState] = useState('playing');
-	const [scoreMax, setScoreMax] = useState(hidden * (hidden * 5) )
+	const [rowNum, setRowNum] = useState(10);
+	const [scoreMax, setScoreMax] = useState(rowNum * (rowNum * 5) * colorNum);
 
 	function IncreaseScore(amount) {
 		const newScore = Score + amount;
 		setScore(newScore);
 	}
 
+	function newGame() {
+		console.log("newGame")
+		const newBoard = createGameBoard(rowNum, colorNum);
+		setBoard(newBoard);
+		setScore(0);
+		setRandomCount(colorNum)
+		setScoreMax(rowNum * (rowNum * 5) * colorNum)
+	}
+
 	useEffect(() => {
 		if (!matchs) {
 			setTimeout(() => {
 				const [nextBoard, newMatchs, count] = cleanUpBoard(board, hidden);
-				setBoard(nextBoard);
-				setMatchs(newMatchs);
-				IncreaseScore(count);
-				if (nextBoard[0][hidden] === 0 && gameState === 'playing') {
-					const [message, minimizedBoard] = endGame(nextBoard, hidden, randomizeCount, Score+count, scoreMax );
-					setGameState(message)
-					if (minimizedBoard){
-						setBoard(minimizedBoard)
-						setMatchs(newMatchs);
-						IncreaseScore(0);
-					}
-				}
+					setBoard(nextBoard);
+					setMatchs(newMatchs);
+					IncreaseScore(count);
 			}, 400);
+		}
+		if (board[0][hidden] === 0 && gameState === "playing"){
+			const [message, minimizedBoard] = endGame(
+				board,
+				hidden,
+				randomizeCount,
+				Score,
+				scoreMax
+			);
+			if (minimizedBoard) {
+				setBoard(minimizedBoard)
+				setMatchs(false)
+			}
+			setGameState(message);
 		}
 	}, [matchs, Score]);
 
@@ -84,8 +101,6 @@ export default function TitleBoard() {
 		}
 	}
 
-
-
 	const colors = [
 		'white',
 		'red',
@@ -104,15 +119,15 @@ export default function TitleBoard() {
 			<ScoreBoard
 				hidden={hidden}
 				setHidden={setHidden}
-				setScore={setScore}
 				Score={Score}
-				setBoard={setBoard}
 				randomize={randomize}
 				randomizeCount={randomizeCount}
 				colorNum={colorNum}
 				setColorNum={setColorNum}
-				setRandomCount={setRandomCount}
 				maxScore={scoreMax}
+				newGame={newGame}
+				rowNum={rowNum}
+				setRowNum={setRowNum}
 			/>
 			{gameState !== 'playing' && <h1>{gameState}</h1>}
 			<div className="tile_board">
@@ -129,7 +144,10 @@ export default function TitleBoard() {
 													<div
 														className={`${colors[tile]} tile selected `}
 														key={`${rowIdx} ${columnIdx}`}
-													/>
+														onClick={() => setTile1([])}
+													>
+														{tile} {colors[tile]} {typeof tile}
+													</div>
 												);
 											}
 											return (
@@ -137,7 +155,9 @@ export default function TitleBoard() {
 													className={`${colors[tile]} tile`}
 													key={`${rowIdx} ${columnIdx}`}
 													onClick={() => validateMove(rowIdx, columnIdx)}
-												/>
+												>
+													{tile} {colors[tile]} {typeof tile}
+												</div>
 											);
 										}
 									})}

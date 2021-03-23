@@ -1,16 +1,6 @@
-import React, { useState } from 'react';
-import createGameBoard from './SetupBoard';
+import React from 'react';
 
 export default function ScoreBoard(props) {
-	const [rowNum, setRowNum] = useState(10);
-
-	function newGame() {
-		const newBoard = createGameBoard(rowNum, props.colorNum);
-		props.setBoard(newBoard);
-		props.setScore(0);
-		props.setRandomCount(props.colorNum)
-	}
-
 	return (
 		<div>
 			<h1>Score: {props.Score} ---- Max Score: {props.maxScore}</h1>
@@ -20,14 +10,14 @@ export default function ScoreBoard(props) {
 				name="hiddenAmount"
 				onChange={(evt) => props.setHidden(evt.target.value)}
 			/>
-			<button type="button" onClick={newGame}>
+			<button type="button" onClick={props.newGame}>
 				New Game
 			</button>
 			<input
 				type="number"
-				value={rowNum}
+				value={props.rowNum}
 				name="rowNum"
-				onChange={(evt) => setRowNum(evt.target.value)}
+				onChange={(evt) => props.setRowNum(evt.target.value)}
 				min="6"
 				max="20"
 			/>
@@ -35,7 +25,7 @@ export default function ScoreBoard(props) {
 				type="number"
 				value={props.colorNum}
 				name="colorNUm"
-				onChange={(evt) => props.setColorNum(evt.target.value)}
+				onChange={(evt) => props.setColorNum(parseInt(evt.target.value, 10))}
 				min="3"
 				max="8"
 			/>

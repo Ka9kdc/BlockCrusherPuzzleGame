@@ -70,7 +70,8 @@ export default function cleanUpBoard(board, hidden) {
 
 // eslint-disable-next-line complexity
 export function endGame(board, hidden, randomizeCount, Score, ScoreMax) {
-	const movesPossible = checkBoardForMoves(board, hidden);
+	const [movesPossible, amountRemaining] = checkBoardForMoves(board, hidden);
+	console.log("endgame", amountRemaining, (board.length * 2))
 	let noHiddenTiles = true;
 	let emtpyRow = false
 	for (let i = 0; i < board.length; i++) {
@@ -93,7 +94,7 @@ export function endGame(board, hidden, randomizeCount, Score, ScoreMax) {
 	} else if (!movesPossible) {
 if (noHiddenTiles && Score > ScoreMax) {
 			message = 'winner';
-	} else if(randomizeCount === 0){
+	} else if (randomizeCount === 0 || amountRemaining <= (board.length * 2)){
 		message = 'lost';
 	}
 	}
