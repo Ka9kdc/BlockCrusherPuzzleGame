@@ -1,7 +1,7 @@
 const row = 10;
 
 const checkTiles = (i, rowTiles, newBoard, styleNum, tile) => {
-	console.log(typeof styleNum)
+	console.log(typeof styleNum);
 	while (
 		(rowTiles[i - 1] === tile && rowTiles[i - 2] === tile) ||
 		(newBoard[newBoard.length - 2] &&

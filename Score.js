@@ -3,7 +3,9 @@ import React from 'react';
 export default function ScoreBoard(props) {
 	return (
 		<div>
-			<h1>Score: {props.Score} ---- Max Score: {props.maxScore}</h1>
+			<h1>
+				Score: {props.Score} ---- Max Score: {props.maxScore}
+			</h1>
 			<input
 				type="number"
 				value={props.hidden}

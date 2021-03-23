@@ -6,7 +6,7 @@ import reorderTiles from './reOrderTIles';
 import ScoreBoard from './Score';
 import createGameBoard from './SetupBoard';
 
-const initialBoard = createGameBoard()
+const initialBoard = createGameBoard();
 
 export default function TitleBoard() {
 	const [tile1, setTile1] = useState([]);
@@ -26,24 +26,24 @@ export default function TitleBoard() {
 	}
 
 	function newGame() {
-		console.log("newGame")
+		console.log('newGame');
 		const newBoard = createGameBoard(rowNum, colorNum);
 		setBoard(newBoard);
 		setScore(0);
-		setRandomCount(colorNum)
-		setScoreMax(rowNum * (rowNum * 5) * colorNum)
+		setRandomCount(colorNum);
+		setScoreMax(rowNum * (rowNum * 5) * colorNum);
 	}
 
 	useEffect(() => {
 		if (!matchs) {
 			setTimeout(() => {
 				const [nextBoard, newMatchs, count] = cleanUpBoard(board, hidden);
-					setBoard(nextBoard);
-					setMatchs(newMatchs);
-					IncreaseScore(count);
+				setBoard(nextBoard);
+				setMatchs(newMatchs);
+				IncreaseScore(count);
 			}, 400);
 		}
-		if (board[0][hidden] === 0 && gameState === "playing"){
+		if (board[0][hidden] === 0 && gameState === 'playing') {
 			const [message, minimizedBoard] = endGame(
 				board,
 				hidden,
@@ -52,8 +52,8 @@ export default function TitleBoard() {
 				scoreMax
 			);
 			if (minimizedBoard) {
-				setBoard(minimizedBoard)
-				setMatchs(false)
+				setBoard(minimizedBoard);
+				setMatchs(false);
 			}
 			setGameState(message);
 		}
