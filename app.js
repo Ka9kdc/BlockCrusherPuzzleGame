@@ -1,14 +1,13 @@
 import React from 'react';
-// import ScoreBoard from './Score';
-// import Board from './board'
-import TitleBoard from './TileBoard';
+import AboutPage from './AboutPage/AboutPage';
+
+// import TileBoard from './TileBoard';
 
 export default function App() {
 	return (
 		<div>
-			{/* <Board /> */}
-			<TitleBoard />
-			{/* <ScoreBoard /> */}
+			<AboutPage />
+			{/* <TileBoard /> */}
 		</div>
 	);
 }
