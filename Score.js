@@ -29,7 +29,7 @@ export default function ScoreBoard(props) {
 				name="colorNUm"
 				onChange={(evt) => props.setColorNum(parseInt(evt.target.value, 10))}
 				min="3"
-				max="8"
+				max="9"
 			/>
 			<button
 				type="button"

@@ -18,7 +18,7 @@ export default function TitleBoard() {
 	const [randomizeCount, setRandomCount] = useState(colorNum);
 	const [gameState, setGameState] = useState('playing');
 	const [rowNum, setRowNum] = useState(10);
-	const [scoreMax, setScoreMax] = useState(rowNum * (rowNum * 5) * colorNum);
+	const [scoreMax, setScoreMax] = useState(rowNum * hidden * colorNum);
 
 	function IncreaseScore(amount) {
 		const newScore = Score + amount;
@@ -31,7 +31,7 @@ export default function TitleBoard() {
 		setBoard(newBoard);
 		setScore(0);
 		setRandomCount(colorNum);
-		setScoreMax(rowNum * (rowNum * 5) * colorNum);
+		setScoreMax(rowNum * hidden * colorNum);
 	}
 
 	useEffect(() => {
@@ -43,7 +43,7 @@ export default function TitleBoard() {
 				IncreaseScore(count);
 			}, 400);
 		}
-		if (board[0][hidden] === 0 && gameState === 'playing') {
+		if ( gameState === 'playing' && (board[0][hidden] === 0 || randomizeCount < Math.ceil(colorNum/2))) {
 			const [message, minimizedBoard] = endGame(
 				board,
 				hidden,
@@ -54,6 +54,10 @@ export default function TitleBoard() {
 			if (minimizedBoard) {
 				setBoard(minimizedBoard);
 				setMatchs(false);
+			}
+			if (message === 'winner'){
+				const addToScore = randomizeCount * 50
+				IncreaseScore(addToScore)
 			}
 			setGameState(message);
 		}
@@ -84,20 +88,28 @@ export default function TitleBoard() {
 		if (randomizeCount > 0) {
 			const newCount = randomizeCount - 1;
 			setRandomCount(newCount);
-			const newBoard = reorderTiles(board, hidden);
+			let newBoard = reorderTiles(board, hidden);
 			setBoard(newBoard);
 			setTimeout(() => {
 				const [nextBoard, newMatchs, count] = tilesFall(
-					board,
+					newBoard,
 					board[0].length,
 					hidden,
 					0
 				);
+				newBoard = nextBoard
 				setBoard(nextBoard);
 				setTile1([]);
 				setMatchs(newMatchs);
-				IncreaseScore(count);
+				console.log(count)
 			}, 400);
+			setTimeout(() => {
+				const [nextBoard, newMatchs, count] = cleanUpBoard(newBoard, hidden);
+			setBoard(nextBoard);
+			setTile1([]);
+			setMatchs(newMatchs);
+			IncreaseScore(count);
+		}, 400)
 		}
 	}
 
