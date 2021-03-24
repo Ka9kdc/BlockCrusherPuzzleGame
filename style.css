@@ -140,3 +140,15 @@ p {
 	background-color: #900000;
 	color: white;
 }
+
+#explainer {
+	display: flex;
+	flex-flow: row nowrap;
+	padding: 1em;
+	margin: 1em;
+}
+
+#rules{
+	background-color: lightgreen;
+	border: 10px solid darkgreen
+}
