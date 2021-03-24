@@ -5,6 +5,7 @@ import { moveCheck } from './MoveValidations';
 import reorderTiles from './reOrderTIles';
 import ScoreBoard from './Score';
 import createGameBoard from './SetupBoard';
+import LevelButtons from './LevelButtons';
 
 const initialBoard = createGameBoard();
 
@@ -130,22 +131,32 @@ export default function TileBoard(props) {
 	];
 
 	return (
+		
 		<div>
 			<ScoreBoard
-				hidden={hidden}
-				setHidden={setHidden}
+				
 				Score={Score}
+				
+				
+				maxScore={scoreMax}
+				
+				
+				setRowNum={setRowNum}
+				
+				gameState={props.gameState}
+			/>
+			<div className="game_row">
+			<LevelButtons
+				setRowNum={setRowNum}
+				setHidden={setHidden}
+				setColorNum={setColorNum}
+				newGame={newGame}
 				randomize={randomize}
+				rowNum={rowNum}
 				randomizeCount={randomizeCount}
 				colorNum={colorNum}
-				setColorNum={setColorNum}
-				maxScore={scoreMax}
-				newGame={newGame}
-				rowNum={rowNum}
-				setRowNum={setRowNum}
 				setGameState={props.setGameState}
 			/>
-			{props.gameState !== 'playing' && <h1>{props.gameState}</h1>}
 			<div className="tile_board">
 				{board.length &&
 					board.map((row, rowIdx) => {
@@ -181,6 +192,6 @@ export default function TileBoard(props) {
 						);
 					})}
 			</div>
-		</div>
+		</div></div>
 	);
 }

@@ -64,6 +64,25 @@
 	margin: 0px;
 }
 
+.level_colors {
+	display: flex;
+	flex-flow: column nowrap;
+	margin: 10px;
+	text-align: center;
+	align-content: space-between;
+	font-size: 1.4em;
+}
+
+.level_colors button {
+	font-size: .7em;
+}
+
+.game_row {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+}
+
 /* About Page */
 .contact_links {
 	display: flex;
