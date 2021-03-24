@@ -1,4 +1,5 @@
 import React from 'react';
+import LevelButtons from './LevelButtons';
 
 export default function ScoreBoard(props) {
 	return (
@@ -6,16 +7,16 @@ export default function ScoreBoard(props) {
 			<h1>
 				Score: {props.Score} ---- Max Score: {props.maxScore}
 			</h1>
-			<input
+			{/* <input
 				type="number"
 				value={props.hidden}
 				name="hiddenAmount"
 				onChange={(evt) => props.setHidden(evt.target.value)}
-			/>
-			<button type="button" onClick={props.newGame}>
+			/> */}
+			<button type="button" onClick={() => props.newGame(props.rowNum, props.colorNum)}>
 				New Game
 			</button>
-			<input
+			{/* <input
 				type="number"
 				value={props.rowNum}
 				name="rowNum"
@@ -29,8 +30,8 @@ export default function ScoreBoard(props) {
 				name="colorNUm"
 				onChange={(evt) => props.setColorNum(parseInt(evt.target.value, 10))}
 				min="3"
-				max="9"
-			/>
+				max="9" */}
+			{/* /> */}
 			<button
 				type="button"
 				onClick={props.randomize}
@@ -38,6 +39,7 @@ export default function ScoreBoard(props) {
 			>
 				Randomize {props.randomizeCount}
 			</button>
+			<LevelButtons setRowNum={props.setRowNum} setHidden={props.setHidden} setColorNum={props.setColorNum} newGame={props.newGame} />
 		</div>
 	);
 }

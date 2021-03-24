@@ -3,13 +3,13 @@ import AboveTheFold from './AboveTheFold';
 import Explainer from './Explainer';
 import Team from './Team';
 
-export default function AboutPage() {
+export default function AboutPage(props) {
 	return (
 		<div>
 			<h1>About Page</h1>
 			<div>
 				Above the fold
-				<AboveTheFold />
+				<AboveTheFold setGameState={props.setGameState}/>
 			</div>
 			<div>
 				Explainer Section

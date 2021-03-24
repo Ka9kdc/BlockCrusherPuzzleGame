@@ -8,7 +8,7 @@ import createGameBoard from './SetupBoard';
 
 const initialBoard = createGameBoard();
 
-export default function TileBoard() {
+export default function TileBoard(props) {
 	const [tile1, setTile1] = useState([]);
 	const [board, setBoard] = useState(initialBoard);
 	const [matchs, setMatchs] = useState(true);
@@ -16,7 +16,6 @@ export default function TileBoard() {
 	const [hidden, setHidden] = useState(10);
 	const [colorNum, setColorNum] = useState(4);
 	const [randomizeCount, setRandomCount] = useState(colorNum);
-	const [gameState, setGameState] = useState('playing');
 	const [rowNum, setRowNum] = useState(10);
 	const [scoreMax, setScoreMax] = useState(rowNum * hidden * colorNum);
 
@@ -25,13 +24,14 @@ export default function TileBoard() {
 		setScore(newScore);
 	}
 
-	function newGame() {
+	function newGame(row, color) {
 		console.log('newGame');
-		const newBoard = createGameBoard(rowNum, colorNum);
+		const newBoard = createGameBoard(row, color);
 		setBoard(newBoard);
 		setScore(0);
-		setRandomCount(colorNum);
-		setScoreMax(rowNum * hidden * colorNum);
+		setRandomCount(color);
+		setScoreMax(row * hidden * color);
+		props.setGameState('playing')
 	}
 
 	useEffect(() => {
@@ -44,7 +44,7 @@ export default function TileBoard() {
 			}, 400);
 		}
 		if (
-			gameState === 'playing' &&
+			props.gameState === 'playing' &&
 			(board[0][hidden] === 0 || randomizeCount < Math.ceil(colorNum / 2))
 		) {
 			const [message, minimizedBoard] = endGame(
@@ -62,7 +62,7 @@ export default function TileBoard() {
 				const addToScore = randomizeCount * 50;
 				IncreaseScore(addToScore);
 			}
-			setGameState(message);
+			props.setGameState(message);
 		}
 	}, [matchs, Score]);
 
@@ -144,7 +144,7 @@ export default function TileBoard() {
 				rowNum={rowNum}
 				setRowNum={setRowNum}
 			/>
-			{gameState !== 'playing' && <h1>{gameState}</h1>}
+			{props.gameState !== 'playing' && <h1>{props.gameState}</h1>}
 			<div className="tile_board">
 				{board.length &&
 					board.map((row, rowIdx) => {
