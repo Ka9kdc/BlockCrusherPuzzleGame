@@ -193,23 +193,29 @@ p {
 	background-color: #ffe4b2;
 	display: flex;
 	flex-flow: column nowrap;
+	height: 85%;
 }
 
 #shoutout {
-	border: 10px solid darkgreen;
+	border: 10px solid plum;
 	padding: 1em;
 	margin: 1em;
 	align-content: center;
-	width: 100%;
-	display: flex;
+	text-align: center;
+	justify-content: center;
+	width: 25%;
+	height: 85%;
+}
+	/* width: 100%;
+	 display: flex;
 	flex-flow: row nowrap;
-	justify-content: space-around;
+	justify-content: space-around; 
 }
 
 #shoutout div {
 	text-align: center;
 	justify-content: center;
-}
+} */
 
 #preview {
 	padding-left: 0.2em;
