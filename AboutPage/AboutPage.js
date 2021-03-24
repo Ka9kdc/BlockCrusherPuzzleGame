@@ -10,7 +10,7 @@ export default function AboutPage(props) {
 			<AboveTheFold setGameState={props.setGameState} />
 			<Explainer />
 			<Team />
-            <MintBeanShoutout />
+			<MintBeanShoutout />
 		</div>
 	);
 }

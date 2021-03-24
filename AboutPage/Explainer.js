@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Explainer() {
 	return (
-		<div >
+		<div>
 			<div id="rules">
 				<h2>About the Game</h2>
 				<p>
