@@ -206,16 +206,6 @@ p {
 	width: 25%;
 	height: 85%;
 }
-	/* width: 100%;
-	 display: flex;
-	flex-flow: row nowrap;
-	justify-content: space-around; 
-}
-
-#shoutout div {
-	text-align: center;
-	justify-content: center;
-} */
 
 #preview {
 	padding-left: 0.2em;

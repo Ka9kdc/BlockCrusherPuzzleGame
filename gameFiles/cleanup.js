@@ -71,7 +71,6 @@ export default function cleanUpBoard(board, hidden) {
 // eslint-disable-next-line complexity
 export function endGame(board, hidden, randomizeCount, Score, ScoreMax) {
 	const [movesPossible, amountRemaining] = checkBoardForMoves(board, hidden);
-	console.log('endgame', amountRemaining, board.length * 2);
 	let noHiddenTiles = true;
 	let emtpyRow = false;
 	for (let i = 0; i < board.length; i++) {

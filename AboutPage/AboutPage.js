@@ -9,10 +9,10 @@ export default function AboutPage(props) {
 		<div id="about_page">
 			<AboveTheFold setGameState={props.setGameState} />
 			<div className="about_row">
-			<MintBeanShoutout />
+				<MintBeanShoutout />
 				<Explainer />
 			</div>
-			
+
 			<Team />
 		</div>
 	);

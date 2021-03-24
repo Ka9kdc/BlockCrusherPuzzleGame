@@ -26,7 +26,6 @@ export default function TileBoard(props) {
 	}
 
 	function newGame(row, color) {
-		console.log('newGame');
 		const newBoard = createGameBoard(row, color);
 		setBoard(newBoard);
 		setScore(0);
@@ -95,7 +94,7 @@ export default function TileBoard(props) {
 			let newBoard = reorderTiles(board, hidden);
 			setBoard(newBoard);
 			setTimeout(() => {
-				const [nextBoard, newMatchs, count] = tilesFall(
+				const [nextBoard, newMatchs] = tilesFall(
 					newBoard,
 					board[0].length,
 					hidden,
@@ -105,7 +104,6 @@ export default function TileBoard(props) {
 				setBoard(nextBoard);
 				setTile1([]);
 				setMatchs(newMatchs);
-				console.log(count);
 			}, 400);
 			setTimeout(() => {
 				const [nextBoard, newMatchs, count] = cleanUpBoard(newBoard, hidden);

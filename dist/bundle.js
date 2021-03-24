@@ -101,7 +101,7 @@ function MintBeanShoutout() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     id: "shoutout",
     className: "contact_links"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "This project was part of a Mintbean week long ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), " Learn-a-thon. "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "The task was to build a turn based puzzle game."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "This project was part of a Mintbean week long ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), " Learn-a-thon.", ' '), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "The task was to build a turn based puzzle game."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
     href: "https://mintbean.io"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     src: "images/mintbean.png",
@@ -340,20 +340,7 @@ function moveCheck(board, tile1, x, y, hidden) {
       valid = true;
     } else if (y - tile1[1] === -1 && checkMoveDown(board, tile1, x, y, hidden)) {
       valid = true;
-    } else {//console.log(
-      // 	'X',
-      // 	x,
-      // 	'tile1Y',
-      // 	tile1[1],
-      // 	'tile2Y',
-      // 	y,
-      // 	'tile2 - tile1',
-      // 	y - tile1[1]
-      // );
     }
-  }
-
-  if (!valid) {//console.log(tile1, [x, y]);
   }
 
   return valid;
@@ -385,16 +372,12 @@ function checkBoardForMoves(board, hidden) {
 
 function leftTileToRightPostion(tileNewX, y, tile, board, hidden) {
   if (board[tileNewX + 2] && tile === board[tileNewX + 1][y] && tile === board[tileNewX + 2][y]) {
-    //console.log('leftTileToRightPostion row');
     return true;
   } else if (y + 1 < hidden && tile === board[tileNewX][y + 1] && tile === board[tileNewX][y - 1]) {
-    //console.log('leftTileTORightPosition column Center');
     return true;
   } else if (y + 2 < hidden && tile === board[tileNewX][y + 1] && tile === board[tileNewX][y + 2]) {
-    //console.log('leftTileTORightPosition column above');
     return true;
   } else if (tile === board[tileNewX][y - 1] && tile === board[tileNewX][y - 2]) {
-    //console.log('leftTileTORightPosition column bellow');
     return true;
   }
 
@@ -404,16 +387,12 @@ function leftTileToRightPostion(tileNewX, y, tile, board, hidden) {
 
 function rightTileTOLeftPostion(tileNewX, y, tile, board, hidden) {
   if (board[tileNewX - 2] && tile === board[tileNewX - 1][y] && tile === board[tileNewX - 2][y]) {
-    //console.log('rigthTileToLeftPostion row');
     return true;
   } else if (y + 1 < hidden && tile === board[tileNewX][y + 1] && tile === board[tileNewX][y - 1]) {
-    //console.log('rigthTileToLeftPostion column Center');
     return true;
   } else if (y + 2 < hidden && tile === board[tileNewX][y + 1] && tile === board[tileNewX][y + 2]) {
-    //console.log('rigthTileToLeftPostion column above');
     return true;
   } else if (tile === board[tileNewX][y - 1] && tile === board[tileNewX][y - 2]) {
-    //console.log('rigthTileToLeftPostion column bellow');
     return true;
   }
 
@@ -423,23 +402,14 @@ function rightTileTOLeftPostion(tileNewX, y, tile, board, hidden) {
 
 function bottonTileToTopPosition(x, newY, tile, board, hidden) {
   if (newY + 2 < hidden && tile === board[x][newY + 1] && tile === board[x][newY + 2]) {
-    //console.log('bottomTileToTopPosition column');
     return true;
-  } //console.log(
-  // 	'bottonTileToTopPosition',
-  // 	tile === board[x][newY + 1],
-  // 	tile === board[x][newY + 2]
-  // );
-
+  }
 
   if (board[x + 1] && board[x - 1] && tile === board[x + 1][newY] && tile === board[x - 1][newY]) {
-    //console.log('bottonTIleToTopPostion row center');
     return true;
   } else if (board[x + 2] && tile === board[x + 1][newY] && tile === board[x + 2][newY]) {
-    //console.log('bottonTIleToTopPostion row right');
     return true;
   } else if (board[x - 2] && tile === board[x - 2][newY] && tile === board[x - 1][newY]) {
-    //console.log('bottonTIleToTopPostion row left');
     return true;
   }
 
@@ -449,23 +419,14 @@ function bottonTileToTopPosition(x, newY, tile, board, hidden) {
 
 function topTileToBottomPosition(x, newY, tile, board) {
   if (tile === board[x][newY - 1] && tile === board[x][newY - 2]) {
-    //console.log('topToleToBOttomPosition column');
     return true;
-  } //console.log(
-  // 	'topToleTPBottomTile',
-  // 	tile === board[x][newY - 1],
-  // 	tile === board[x][newY - 2]
-  // );
-
+  }
 
   if (board[x + 1] && board[x - 1] && tile === board[x + 1][newY] && tile === board[x - 1][newY]) {
-    //console.log('topToleToBOttomPosition row center');
     return true;
   } else if (board[x + 2] && tile === board[x + 1][newY] && tile === board[x + 2][newY]) {
-    //console.log('topToleToBOttomPosition  row right');
     return true;
   } else if (board[x - 2] && tile === board[x - 2][newY] && tile === board[x - 1][newY]) {
-    //console.log('topToleToBOttomPosition  row left');
     return true;
   }
 
@@ -507,8 +468,6 @@ __webpack_require__.r(__webpack_exports__);
 const row = 10;
 
 const checkTiles = (i, rowTiles, newBoard, styleNum, tile) => {
-  console.log(typeof styleNum);
-
   while (rowTiles[i - 1] === tile && rowTiles[i - 2] === tile || newBoard[newBoard.length - 2] && newBoard[newBoard.length - 1][i] === tile && newBoard[newBoard.length - 2][i] === tile) {
     tile--;
     if (tile === 0) tile = styleNum;
@@ -589,7 +548,6 @@ function TileBoard(props) {
   }
 
   function newGame(row, color) {
-    console.log('newGame');
     const newBoard = (0,_SetupBoard__WEBPACK_IMPORTED_MODULE_5__.default)(row, color);
     setBoard(newBoard);
     setScore(0);
@@ -649,12 +607,11 @@ function TileBoard(props) {
       let newBoard = (0,_reOrderTIles__WEBPACK_IMPORTED_MODULE_3__.default)(board, hidden);
       setBoard(newBoard);
       setTimeout(() => {
-        const [nextBoard, newMatchs, count] = (0,_cleanup__WEBPACK_IMPORTED_MODULE_1__.tilesFall)(newBoard, board[0].length, hidden, 0);
+        const [nextBoard, newMatchs] = (0,_cleanup__WEBPACK_IMPORTED_MODULE_1__.tilesFall)(newBoard, board[0].length, hidden, 0);
         newBoard = nextBoard;
         setBoard(nextBoard);
         setTile1([]);
         setMatchs(newMatchs);
-        console.log(count);
       }, 400);
       setTimeout(() => {
         const [nextBoard, newMatchs, count] = (0,_cleanup__WEBPACK_IMPORTED_MODULE_1__.default)(newBoard, hidden);
@@ -793,7 +750,6 @@ function cleanUpBoard(board, hidden) {
 
 function endGame(board, hidden, randomizeCount, Score, ScoreMax) {
   const [movesPossible, amountRemaining] = (0,_MoveValidations__WEBPACK_IMPORTED_MODULE_0__.checkBoardForMoves)(board, hidden);
-  console.log('endgame', amountRemaining, board.length * 2);
   let noHiddenTiles = true;
   let emtpyRow = false;
 
