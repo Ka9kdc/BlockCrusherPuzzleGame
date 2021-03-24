@@ -7,18 +7,10 @@ export default function AboutPage(props) {
 	return (
 		<div>
 			<h1>About Page</h1>
-			<div>
-				Above the fold
+				
 				<AboveTheFold setGameState={props.setGameState} />
-			</div>
-			<div>
-				Explainer Section
 				<Explainer />
-			</div>
-			<div>
-				Team
 				<Team />
-			</div>
 		</div>
 	);
 }

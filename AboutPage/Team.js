@@ -3,7 +3,7 @@ import React from 'react';
 export default function Team() {
 	return (
 		<div>
-			<div>
+			{/* <div>
 				<p>Team section</p>
 				<p>
 					This next section lists teammates and what technologies you used. Here
@@ -11,13 +11,13 @@ export default function Team() {
 				</p>
 				{/* <p>A list of team members</p> */}
 				{/* <p>A list of technologies used (with icons, for bonus points!)</p> */}
-				<p>
+				{/* <p>
 					Shoutout and link to Mintbean's homepage - This helps us grow the
 					community!
 				</p>
-			</div>
+			</div> */}
 
-			<div>
+			{/* <div> */} */}
 				<div id="ListOfMembers">
 					<img
 						src="images/kelsey.png"
@@ -48,7 +48,7 @@ export default function Team() {
 					</div>
 				</div>
 				<div>
-					<h3>Technologies Used</h3>
+					<h2>Technologies Used</h2>
 					<div className="contact_links">
 						<img src="images/react-logo.png" alt="React logo" />
 						<img
@@ -57,7 +57,7 @@ export default function Team() {
 						/>
 					</div>
 				</div>
-			</div>
+			{/* </div> */}
 		</div>
 	);
 }

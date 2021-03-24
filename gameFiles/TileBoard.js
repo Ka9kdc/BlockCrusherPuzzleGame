@@ -143,6 +143,7 @@ export default function TileBoard(props) {
 				newGame={newGame}
 				rowNum={rowNum}
 				setRowNum={setRowNum}
+				setGameState={props.setGameState}
 			/>
 			{props.gameState !== 'playing' && <h1>{props.gameState}</h1>}
 			<div className="tile_board">

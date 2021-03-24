@@ -5,7 +5,7 @@ export default function ScoreBoard(props) {
 	return (
 		<div>
 			<h1>
-				Score: {props.Score} ---- Max Score: {props.maxScore}
+				Score: {props.Score} ---- Target Score: {props.maxScore}
 			</h1>
 			{/* <input
 				type="number"
@@ -42,6 +42,7 @@ export default function ScoreBoard(props) {
 			>
 				Randomize {props.randomizeCount}
 			</button>
+			<button type="button" onClick={() => props.setGameState('Loading')}>Return to Homepage</button>
 			<LevelButtons
 				setRowNum={props.setRowNum}
 				setHidden={props.setHidden}
