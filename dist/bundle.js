@@ -46,12 +46,19 @@ __webpack_require__.r(__webpack_exports__);
 
 function AboveTheFold(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "about_row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "red",
     id: "above_the_fold"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Block Crusher"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     type: "button",
     onClick: () => props.setGameState('playing')
-  }, "Click here to start"));
+  }, "Click here to start")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    id: "preview"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("iframe", {
+    frameBorder: "0",
+    src: "https://imgflip.com/embed/5305ji"
+  })));
 }
 
 /***/ }),
@@ -69,9 +76,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 function Explainer() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     id: "rules"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "About the Game"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "The goal of this game is to clear the board and reach a target score."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Game play is similar to candy crush, where you are trying to switch neighboring tiles to make three or more tiles of the same color line up in a row or column."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "As you align the tiles, matching tiles of three or more in a row will disappear allowing for the tiles above to fall down and more tiles appaer at the top of your board"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Each column as a set number of tiles that can appear in it. Once all hidden tiles appear on your board. Empty columns will start disappering"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "You can not trade placing with an empty tile."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "There is a ranomize button that will randomly rearrange the visable tiles in to the bottom rows. So more tiles can protentianl fall and more moves can be made. You can only randomize your board a set number of times."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Once you can no longer make any moves or randonize your board, the game will end")));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "About the Game"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "The goal of this game is to clear the board and reach a target score."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Game play is similar to candy crush, where you are trying to switch neighboring tiles to make three or more tiles of the same color line up in a row or column."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "As you align the tiles, matching tiles of three or more in a row will disappear allowing for the tiles above to fall down and more tiles appaer at the top of your board"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Each column as a set number of tiles that can appear in it. Once all hidden tiles appear on your board. Empty columns will start disappering"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "You can not trade placing with an empty tile."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "There is a ranomize button that will randomly rearrange the visable tiles in to the bottom rows. So more tiles can protentianl fall and more moves can be made. You can only randomize your board a set number of times."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Once you can no longer make any moves or randonize your board, the game will end"));
 }
 
 /***/ }),
@@ -179,14 +186,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function App() {
-  const [gameState, setGameState] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('Loading'); // if (gameState === 'Loading') {
-  // 	return <AboutPage setGameState={setGameState} />;
-  // } else {
+  const [gameState, setGameState] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('Loading');
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_gameFiles_TileBoard__WEBPACK_IMPORTED_MODULE_2__.default, {
-    gameState: gameState,
-    setGameState: setGameState
-  }); // }
+  if (gameState === 'Loading') {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_AboutPage_AboutPage__WEBPACK_IMPORTED_MODULE_1__.default, {
+      setGameState: setGameState
+    });
+  } else {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_gameFiles_TileBoard__WEBPACK_IMPORTED_MODULE_2__.default, {
+      gameState: gameState,
+      setGameState: setGameState
+    });
+  }
 }
 
 /***/ }),

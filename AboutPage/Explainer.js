@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Explainer() {
 	return (
-		<div>
+		
 			<div id="rules">
 				<h2>About the Game</h2>
 				<p>
@@ -35,7 +35,9 @@ export default function Explainer() {
 					game will end
 				</p>
 			</div>
-			{/* added a gif of the game play */}
-		</div>
+			
+				
+			
+		
 	);
 }
