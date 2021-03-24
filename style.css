@@ -8,16 +8,12 @@
 }
 
 .tile {
-	/* border: 2px solid yellow; */
-	margin: 2px;
+	margin: 5px;
 	width: 50px;
 	height: 50px;
 }
 
 .row {
-	/* border: 2px solid black; */
-	/* width: 50px; */
-	/* height: 50px; */
 	display: flex;
 	flex-flow: column-reverse nowrap;
 	justify-content: space-around;
@@ -64,7 +60,7 @@
 }
 
 .selected {
-	border: 3px solid black;
+	border: 5px solid black;
 	margin: 0px;
 }
 
@@ -79,15 +75,15 @@
 }
 
 .contact_links a {
-	/* width: 50%; */
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: center;
 }
 
 .contact_links img {
-	width: 50%;
-	padding: 5px;
+	width: 70%;
+	margin: 1em;
+	justify-self: center;
 }
 
 .contact_links img:hover {
@@ -109,13 +105,12 @@ p {
 }
 
 #about_page {
-	width: 90%;
+	/* width: 90%; */
 	display: flex;
 	flex-flow: row wrap;
 	border: 10px solid black;
 	justify-content: center;
 	text-align: center;
-	/* padding: 1em; */
 }
 
 #above_the_fold {
@@ -141,14 +136,40 @@ p {
 	color: white;
 }
 
-#explainer {
+.about_row {
 	display: flex;
 	flex-flow: row nowrap;
-	padding: 1em;
-	margin: 1em;
+	justify-content: space-between;
+}
+
+.about_row h2 {
+	font-size: 2em;
 }
 
 #rules{
 	background-color: lightgreen;
 	border: 10px solid darkgreen
 }
+
+#ListOfMembers {
+	display: flex;
+	flex-flow: row nowrap;
+	padding: 1em;
+	margin: 1em;
+	border: 10px solid darkblue;
+	background-color: lightskyblue;
+}
+
+#ListOfMembers div {
+	width: 50%;
+}
+
+#tech_used {
+	padding: 1em;
+	margin: 1em;
+	border: 10px solid #ffa500;
+	background-color: #ffe4b2;
+	display: flex;
+	flex-flow: column nowrap;
+}
+

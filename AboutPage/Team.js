@@ -2,25 +2,14 @@ import React from 'react';
 
 export default function Team() {
 	return (
-		<div>
-			{/* <div>
-				<p>Team section</p>
-				<p>
-					This next section lists teammates and what technologies you used. Here
-					are some subsections you can consider including:
-				</p>
-				{/* <p>A list of team members</p> */}
-			{/* <p>A list of technologies used (with icons, for bonus points!)</p> */}
-			{/* <p>
-					Shoutout and link to Mintbean's homepage - This helps us grow the
-					community!
-				</p>
-			</div> */}
-			{/* <div> */} */}
-			<div id="ListOfMembers">
+		<div className="about_row">
+			<div  id="ListOfMembers">
+                <div className="contact_links">
+                    <h2>Kelsey Schroeder</h2>
+                    <a href="https://kelsey-schroeder.herokuapp.com">
 				<img src="images/kelsey.png" alt="head shot of Kelsey" id="photoOfMe" />
-				<h2>Kelsey Schroeder</h2>
-
+                    </a>
+                </div>
 				<div className="contact_links">
 					<a href="https://github.com/Ka9kdc">
 						<img
@@ -42,16 +31,18 @@ export default function Team() {
 					</a>
 				</div>
 			</div>
-			<div>
-				<h2>Technologies Used</h2>
-				<div className="contact_links">
+			<div id="tech_used" className="contact_links">
+                    <h2>Technologies Used</h2>
+                    <a href="">
 					<img src="images/react-logo.png" alt="React logo" />
-					<img
+                    </a>
+					<a href=""><img
 						src="images/html5-logo-31819.png"
 						alt="html5 css3 and javascript logo"
 					/>
-				</div>
-			</div>
+     </a>
+   </div>
+			{/* </div> */}
 			{/* </div> */}
 		</div>
 	);

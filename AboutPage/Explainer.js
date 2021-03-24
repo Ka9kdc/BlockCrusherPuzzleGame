@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Explainer() {
 	return (
-		<div id="explainer">
+		<div className="about_row">
 			{/* <div> */}
 			{/* <p>Explainer section</p>
 				<p>
