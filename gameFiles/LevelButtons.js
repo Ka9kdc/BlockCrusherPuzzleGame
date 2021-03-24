@@ -10,10 +10,10 @@ export default function LevelButtons(props) {
 
 	return (
 		<div className="level_colors">
-				<button
+			<button
 				type="button"
 				onClick={() => props.newGame(props.rowNum, props.colorNum)}
-				style={{backgroundColor: "lightgreen"}}
+				style={{ backgroundColor: 'lightgreen' }}
 			>
 				New Game
 			</button>
@@ -22,27 +22,39 @@ export default function LevelButtons(props) {
 				type="button"
 				onClick={props.randomize}
 				disabled={props.randomizeCount === 0}
-				style={{backgroundColor: "#f3ccff"}}>
-
+				style={{ backgroundColor: '#f3ccff' }}
+			>
 				Randomize {props.randomizeCount}
 			</button>
 			<button type="button" onClick={() => props.setGameState('Loading')}>
 				Return to Homepage
 			</button>
 			<h3>Levels</h3>
-			<button type="button" onClick={() => startGame(6, 3)} style={{backgroundColor: "#f3ccff"}}>
+			<button
+				type="button"
+				onClick={() => startGame(6, 3)}
+				style={{ backgroundColor: '#f3ccff' }}
+			>
 				Three Colors
 			</button>
 			<button type="button" onClick={() => startGame(10, 4)} className="blue">
 				Four Colors
 			</button>
-			<button type="button" onClick={() => startGame(10, 5)} style={{backgroundColor: "lightgreen"}}>
+			<button
+				type="button"
+				onClick={() => startGame(10, 5)}
+				style={{ backgroundColor: 'lightgreen' }}
+			>
 				Five Colors
 			</button>
-			<button type="button" onClick={() => startGame(10, 6)} style={{backgroundColor: "beige"}}>
+			<button
+				type="button"
+				onClick={() => startGame(10, 6)}
+				style={{ backgroundColor: 'beige' }}
+			>
 				Six Colors
 			</button>
-			<button type="button" onClick={() => startGame(15, 7)}className="orange">
+			<button type="button" onClick={() => startGame(15, 7)} className="orange">
 				Seven Colors
 			</button>
 			<button type="button" onClick={() => startGame(15, 8)} className="pink">

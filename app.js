@@ -9,5 +9,5 @@ export default function App() {
 		return <AboutPage setGameState={setGameState} />;
 	} else {
 		return <TileBoard gameState={gameState} setGameState={setGameState} />;
-	} 
+	}
 }
