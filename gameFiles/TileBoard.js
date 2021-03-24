@@ -31,7 +31,7 @@ export default function TileBoard(props) {
 		setScore(0);
 		setRandomCount(color);
 		setScoreMax(row * hidden * color);
-		props.setGameState('playing')
+		props.setGameState('playing');
 	}
 
 	useEffect(() => {

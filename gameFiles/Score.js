@@ -13,7 +13,10 @@ export default function ScoreBoard(props) {
 				name="hiddenAmount"
 				onChange={(evt) => props.setHidden(evt.target.value)}
 			/> */}
-			<button type="button" onClick={() => props.newGame(props.rowNum, props.colorNum)}>
+			<button
+				type="button"
+				onClick={() => props.newGame(props.rowNum, props.colorNum)}
+			>
 				New Game
 			</button>
 			{/* <input
@@ -39,7 +42,12 @@ export default function ScoreBoard(props) {
 			>
 				Randomize {props.randomizeCount}
 			</button>
-			<LevelButtons setRowNum={props.setRowNum} setHidden={props.setHidden} setColorNum={props.setColorNum} newGame={props.newGame} />
+			<LevelButtons
+				setRowNum={props.setRowNum}
+				setHidden={props.setHidden}
+				setColorNum={props.setColorNum}
+				newGame={props.newGame}
+			/>
 		</div>
 	);
 }

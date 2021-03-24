@@ -9,7 +9,7 @@ export default function AboutPage(props) {
 			<h1>About Page</h1>
 			<div>
 				Above the fold
-				<AboveTheFold setGameState={props.setGameState}/>
+				<AboveTheFold setGameState={props.setGameState} />
 			</div>
 			<div>
 				Explainer Section

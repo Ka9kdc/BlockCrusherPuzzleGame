@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 export default function AboveTheFold(props) {
 	return (
 		// <div><div>
@@ -17,11 +16,13 @@ export default function AboveTheFold(props) {
 		// 		A prominent button with a clear message (for example "Click here to
 		// 		start") that links to your core app.
 		// 	</p></div>
-            <div>
-                <h1>Block Crusher</h1>
-                <button type="button" onClick={() => props.setGameState("playing")} >Click here to start</button>
-                {/* added a gif of the game play */}
-            </div>
+		<div>
+			<h1>Block Crusher</h1>
+			<button type="button" onClick={() => props.setGameState('playing')}>
+				Click here to start
+			</button>
+			{/* added a gif of the game play */}
+		</div>
 		// </div>
 	);
 }
