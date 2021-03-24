@@ -153,7 +153,6 @@ export default function TileBoard(props) {
 						board.map((row, rowIdx) => {
 							return (
 								<div key={`row-${rowIdx}`} className="row">
-									{/* Row - {rowIdx} */}
 									{row.length &&
 										row.map((tile, columnIdx) => {
 											if (columnIdx < hidden) {
@@ -163,9 +162,7 @@ export default function TileBoard(props) {
 															className={`${colors[tile]} tile selected `}
 															key={`${rowIdx} ${columnIdx}`}
 															onClick={() => setTile1([])}
-														>
-															{/* {tile} {colors[tile]} {typeof tile} */}
-														</div>
+														/>
 													);
 												}
 												return (
@@ -173,9 +170,7 @@ export default function TileBoard(props) {
 														className={`${colors[tile]} tile`}
 														key={`${rowIdx} ${columnIdx}`}
 														onClick={() => validateMove(rowIdx, columnIdx)}
-													>
-														{/* {tile} {colors[tile]} {typeof tile} */}
-													</div>
+													/>
 												);
 											}
 										})}

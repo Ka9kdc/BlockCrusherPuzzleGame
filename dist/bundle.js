@@ -450,7 +450,7 @@ __webpack_require__.r(__webpack_exports__);
 function ScoreBoard(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "game_row"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Score: ", props.Score, " ---- Target Score: ", props.maxScore));
+  }, props.gameState !== 'playing' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, props.gameState, " Final Score: ", props.Score) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Score: ", props.Score, " ---- Target Score: ", props.maxScore));
 }
 
 /***/ }),
