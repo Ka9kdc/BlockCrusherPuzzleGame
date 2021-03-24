@@ -5,9 +5,8 @@ import Team from './Team';
 
 export default function AboutPage(props) {
 	return (
-		<div>
-			<h1>About Page</h1>
-				
+		<div id="about_page">
+			{/* <h1>About Page</h1> */}
 				<AboveTheFold setGameState={props.setGameState} />
 				<Explainer />
 				<Team />

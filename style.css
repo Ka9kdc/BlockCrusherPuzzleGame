@@ -107,3 +107,37 @@ h1, h2{
 p {
 	font-family: "Noto Sans";
 }
+
+#about_page {
+	width: 90%;
+	display: flex;
+	flex-flow: row wrap;
+	border: 10px solid black;
+	justify-content: center;
+text-align: center;
+	/* padding: 1em; */
+}
+
+#above_the_fold {
+	width: 100%;
+	text-align: center;
+	padding: 1em;
+	margin: 1em;
+	border: 10px solid	#900000;
+	background-color:  #ffb09c;
+}
+
+#above_the_fold h1 {
+	font-size: 4em;
+	margin-top: 0;
+}
+
+#above_the_fold button {
+	font-size: 1.5em;
+}
+
+
+#above_the_fold button:hover {
+	background-color: #900000;
+	color: white;
+}

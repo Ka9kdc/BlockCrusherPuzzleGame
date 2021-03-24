@@ -16,7 +16,7 @@ export default function AboveTheFold(props) {
 		// 		A prominent button with a clear message (for example "Click here to
 		// 		start") that links to your core app.
 		// 	</p></div>
-		<div>
+		<div className="red" id="above_the_fold">
 			<h1>Block Crusher</h1>
 			<button type="button" onClick={() => props.setGameState('playing')}>
 				Click here to start
