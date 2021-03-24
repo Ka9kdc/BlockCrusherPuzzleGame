@@ -148,7 +148,9 @@ p {
 
 #rules{
 	background-color: lightgreen;
-	border: 10px solid darkgreen
+	border: 10px solid darkgreen;
+	padding: 1em;
+	margin: 1em;
 }
 
 #ListOfMembers {
@@ -173,3 +175,18 @@ p {
 	flex-flow: column nowrap;
 }
 
+#shoutout {
+	border: 10px solid darkgreen;
+	padding: 1em;
+	margin: 1em;
+	align-content: center;
+	width: 100%;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-around;
+}
+
+#shoutout div {
+	text-align: center;
+	justify-content: center;
+}

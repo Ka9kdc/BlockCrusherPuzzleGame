@@ -1,6 +1,7 @@
 import React from 'react';
 import AboveTheFold from './AboveTheFold';
 import Explainer from './Explainer';
+import MintBeanShoutout from './MintBeanShoutout';
 import Team from './Team';
 
 export default function AboutPage(props) {
@@ -9,10 +10,7 @@ export default function AboutPage(props) {
 			<AboveTheFold setGameState={props.setGameState} />
 			<Explainer />
 			<Team />
-            <p>
-					Shoutout and link to Mintbean's homepage - This helps us grow the
-					community!
-				</p>
+            <MintBeanShoutout />
 		</div>
 	);
 }

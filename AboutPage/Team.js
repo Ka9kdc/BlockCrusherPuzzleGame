@@ -3,6 +3,7 @@ import React from 'react';
 export default function Team() {
 	return (
 		<div className="about_row">
+	
 			<div  id="ListOfMembers">
                 <div className="contact_links">
                     <h2>Kelsey Schroeder</h2>
