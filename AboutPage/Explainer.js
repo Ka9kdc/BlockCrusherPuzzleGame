@@ -4,7 +4,7 @@ export default function Explainer() {
 	return (
 		<div>
 			{/* <div> */}
-				{/* <p>Explainer section</p>
+			{/* <p>Explainer section</p>
 				<p>
 					The next section after the ATF is the Explainer section. This section
 					explains what the application does, how it works, and maybe even some
@@ -12,8 +12,9 @@ export default function Explainer() {
 					guide a user through the process of using your application.
 				</p>
 			</div> */}
+
 			<div>
-                <h2>About the Game</h2>
+				<h2>About the Game</h2>
 				<p>
 					The goal of this game is to clear the board and reach a target score.
 				</p>
@@ -44,6 +45,7 @@ export default function Explainer() {
 					game will end
 				</p>
 			</div>
+			{/* added a gif of the game play */}
 		</div>
 	);
 }

@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Notable&family=Noto+Sans&display=swap');
 
-
 /* Game */
 .tile_board {
 	display: flex;
@@ -100,12 +99,13 @@
 	border-radius: 50%;
 }
 
-h1, h2{
-	font-family: "Notable";
+h1,
+h2 {
+	font-family: 'Notable';
 }
 
 p {
-	font-family: "Noto Sans";
+	font-family: 'Noto Sans';
 }
 
 #about_page {
@@ -114,7 +114,7 @@ p {
 	flex-flow: row wrap;
 	border: 10px solid black;
 	justify-content: center;
-text-align: center;
+	text-align: center;
 	/* padding: 1em; */
 }
 
@@ -123,8 +123,8 @@ text-align: center;
 	text-align: center;
 	padding: 1em;
 	margin: 1em;
-	border: 10px solid	#900000;
-	background-color:  #ffb09c;
+	border: 10px solid #900000;
+	background-color: #ffb09c;
 }
 
 #above_the_fold h1 {
@@ -135,7 +135,6 @@ text-align: center;
 #above_the_fold button {
 	font-size: 1.5em;
 }
-
 
 #above_the_fold button:hover {
 	background-color: #900000;

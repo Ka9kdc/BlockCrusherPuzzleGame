@@ -7,9 +7,9 @@ export default function AboutPage(props) {
 	return (
 		<div id="about_page">
 			{/* <h1>About Page</h1> */}
-				<AboveTheFold setGameState={props.setGameState} />
-				<Explainer />
-				<Team />
+			<AboveTheFold setGameState={props.setGameState} />
+			<Explainer />
+			<Team />
 		</div>
 	);
 }
